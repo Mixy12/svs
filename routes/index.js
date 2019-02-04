@@ -5,7 +5,12 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   sess = req.session;
   console.log(sess);
-  res.render('index', { title: 'Phoenix' });
+  if(req.session.logged == true){
+    menu = 'Кабинет';
+  }else{
+    menu = 'Вход';
+  }
+  res.render('index', { menu: menu });
 });
 
 module.exports = router;

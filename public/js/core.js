@@ -39,9 +39,16 @@ $("#trackbutton").bind('click',function() {
 
 
 });
-function calcfuncSuccess (){alert("susceks"); $('#result').text('Ok');}
+function calcfuncSuccess (data){
+    $('#result').text('');
+    var arr = JSON.parse(data);
+    arr.forEach(function(item, i, arr) {
+        $("#result").append("<br><p>По направлению "+$('#sendCity').val()+" - "+$('#recdCity').val()+" предлагаем следущие тарифы:</p>" +
+            " <ul><li>Физический вес: "+$('#weight').val()+"</li><li>Объемный вес: "+$('#length').val() * $('#height').val() * $('#width').val() /5000+"</li><li>Стоимость доставки: "+item.price+"</li><li>Срок доставки(раб. дней): "+item.time+"</li></ul>");
+    });
+    }
 
-function calcfuncbefore (){alert("before"); document.getElementById('result').innerHTML ="Ожидание ...";}
+function calcfuncbefore (){document.getElementById('result').innerHTML ="Ожидание ...";}
 
 function calcfuncerror (){alert( "Ошибка :(");}
 

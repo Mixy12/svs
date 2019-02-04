@@ -29,22 +29,31 @@ router.post("/tracknum", urlencodedParser, function (request, response) {
 
 });
 router.post("/calculate", urlencodedParser, function (request, response) {
-  console.log(request.body);
-  response.send('a');
- /* var args = {Num: request.body.num};
+  var params = {
+    "SendCity": request.body.sendCity,
+    "RecCity": request.body.recdCity,
+    "Wight": request.body.weight.toString(),
+    "Volume": request.body.volume.toString(),
+    "UserIP": request.connection.remoteAddress.toString(),
+    "Hash":"",
+    "UserId":""
+
+    };
+  var args = {CalcXDTO:params};
+console.log(args);
 
   soap.createClient(url, function(err, client) {
-    client.History(args, function(err, result) {
+    client.Calculation(args, function(err, result) {
       var data = result.return;
-
+      console.log(data);
       var j = JSON.parse(data);
       //console.log(p1);
       //console.log(obj);
       //console.log(p1);
-      response.send(j.table);
+      response.send(j.data);
     });
   });
-*/
+
 
 });
 

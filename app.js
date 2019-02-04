@@ -17,11 +17,9 @@ var app = express();
 
 
 app.use(session({ secret: 'keyboard cat'}));
-app.use(function (req, res, next) {
-  res.local.menu = 'Входд';
-  let lol= res.local.menu;
-  res.render('/',{menu:lol});
-});
+
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

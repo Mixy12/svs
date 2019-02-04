@@ -3,7 +3,12 @@ var router = express.Router();
 
 
 router.get('/', function(req, res, next) {
-  res.render('about');
+  if(req.session.logged == true){
+    menu = 'Кабинет';
+  }else{
+    menu = 'Вход';
+  }
+  res.render('about', { menu: menu });
 });
 
 module.exports = router;

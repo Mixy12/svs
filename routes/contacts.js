@@ -4,7 +4,12 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('contacts');
+  if(req.session.logged == true){
+    menu = 'Кабинет';
+  }else{
+    menu = 'Вход';
+  }
+  res.render('contacts', { menu: menu });
 });
 
 module.exports = router;
