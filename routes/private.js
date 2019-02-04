@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var menucore = require('../public/functions/menucore');
 const bodyParser = require("body-parser");
 const urlencodedParser = bodyParser.urlencoded({extended: false});
 const soap = require('soap');
@@ -62,13 +63,15 @@ router.post("/", urlencodedParser, function (request, response) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+    var menusetting = menucore.menusetting(req.session.logged);
+
   if(req.session.logged == true) {
     res.render('cabinet',{
-      menu: 'Кабинет'
+      menu: menusetting
     });
   }else{
     res.render('login',{
-      menu: 'Вход'
+      menu: menusetting
     });
   }
 });
