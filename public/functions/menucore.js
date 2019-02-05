@@ -1,8 +1,8 @@
 function menusetting (logged) {
     if(logged == true){
-        menu = 'Кабинет';
+        menu = true;
     }else{
-        menu = 'Вход';
+        menu = false;
     }
     return menu;
 }

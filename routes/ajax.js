@@ -28,6 +28,8 @@ router.post("/tracknum", urlencodedParser, function (request, response) {
 
 
 });
+
+
 router.post("/calculate", urlencodedParser, function (request, response) {
   var params = {
     "SendCity": request.body.sendCity,
@@ -57,4 +59,87 @@ console.log(args);
 
 });
 
+router.post("/calculate", urlencodedParser, function (request, response) {
+  var params = {
+    "SendCity": request.body.sendCity,
+    "RecCity": request.body.recdCity,
+    "Wight": request.body.weight.toString(),
+    "Volume": request.body.volume.toString(),
+    "UserIP": request.connection.remoteAddress.toString(),
+    "Hash":"",
+    "UserId":""
+
+  };
+  var args = {CalcXDTO:params};
+  console.log(args);
+
+  soap.createClient(url, function(err, client) {
+    client.Calculation(args, function(err, result) {
+      var data = result.return;
+      console.log(data);
+      var j = JSON.parse(data);
+      //console.log(p1);
+      //console.log(obj);
+      //console.log(p1);
+      response.send(j.data);
+    });
+  });
+
+
+});
+
+
+router.post("/reqdel", urlencodedParser, function (request, response) {
+  var params = {
+    "UserId": request.session.userId,
+    "Hash": request.session.hash,
+    "UserIP": request.connection.remoteAddress
+
+  };
+  var args = {LoginXDTO:params};
+  //console.log(args);
+
+  soap.createClient(url, function(err, client) {
+    client.SiteSrdir(args, function(err, result) {
+      var data = result.return;
+      console.log("data "+data);
+      var j = JSON.parse(data);
+      //console.log(p1);
+      //console.log(obj);
+      //console.log(p1);
+      response.send(j.table);
+      console.log("Таблица"+j.table);
+    });
+  });
+
+
+});
+
 module.exports = router;
+
+//-----------------------------------------
+router.post("/finddisp", urlencodedParser, function (request, response) {
+  var params = {
+    "UserIP": request.connection.remoteAddress,
+    "Hash": request.session.hash,
+    "UserId": request.session.userId,
+    "from": request.body.from.toString(),
+    "to": request.body.to.toString()
+  };
+  var args = {LoginXDTO:params};
+  console.log(args);
+
+  soap.createClient(url, function(err, client) {
+    client.SiteDispatch(args, function(err, result) {
+      var data = result.return;
+      console.log(data);
+      var j = JSON.parse(data);
+      //console.log(p1);
+      //console.log(obj);
+      //console.log(p1);
+      response.send(j.table);
+    });
+  });
+
+
+});

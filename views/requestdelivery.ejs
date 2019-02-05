@@ -1,0 +1,322 @@
+<%- include("parts/head.ejs") %>
+<%- include("parts/menu.ejs") %>
+<div class="loader loader-bg">
+    <div class="loader-inner ball-clip-rotate-pulse">
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">СВС-Логистик</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="#about">Features</a></li>
+            <li><a href="#contact">About</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li class="dropdown-header">Nav header</li>
+                    <li><a href="#">Separated link</a></li>
+                    <li><a href="#">One more separated link</a></li>
+                </ul>
+            </li>
+            <li><a href="#about">Q&A</a></li>
+            <li><a href="#" class="btn btn-default">Get a Quote</a></li>
+        </ul>
+    </div>
+</div>
+<br><br>
+<div class="container">
+    <div id="content">
+        <div id="sendinfo" class=" col-sm-6 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-sm-6">Данные отправителя</div> <div class="col-sm-6"><a href="#send" id="asprav" class="btn btn-default" data-toggle="collapse">Заполнить из справочника</a> </div></div>
+
+
+                    <div class="row">
+
+
+
+                        <div id="send" class="collapse">
+                            <table id="directory" class = "table dispatch table-striped table-hover" >
+                                <tr>
+                                    <th>Наименование</th>
+                                    <th>Город</th>
+                                    <th>Адрес</th>
+                                    <th style="display: none">Телефон</th>
+                                    <th style="display: none">Контактное лицо</th>
+                                    <th style="display: none">Компания</th>
+                                    <th style="display: none">Доп. информация</th>
+                                    <th></th>
+                                </tr>
+
+                                <!--
+                                        for($i=0; $i<$quantity; $i++) {
+                                        $name = $dataResult->table[$i]->name;
+                                //print_r($dataResult);
+                                echo '<tr>
+                                    <td id = "thnamebut'.$i.'">'.$name.'</td>
+                                    <td id = "thcitybut'.$i.'">'.$dataResult->table[$i]->city.'</td>
+                                    <td id = "thaddressbut'.$i.'">'.$dataResult->table[$i]->address.'</td>
+                                    <td style="display: none" id = "thphonebut'.$i.'">'.$dataResult->table[$i]->phone.'</td>
+                                    <td style="display: none" id = "thpersonbut'.$i.'">'.$dataResult->table[$i]->person.'</td>
+                                    <td style="display: none" id = "thcompanybut'.$i.'">'.$dataResult->table[$i]->company.'</td>
+                                    <td style="display: none" id = "thaddinfobut'.$i.'">'.$dataResult->table[$i]->addinfo.'</td>
+                                    <td> <button type="button" class="btn btn-default btn-xs" onClick ="senddir('.$i.')">Заполнить</button></td>
+                                </tr>';
+
+                                }-->
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="SendCity">Город:</label>
+                        <div class="col-sm-8 paddingbottomclass">
+                            <input name = "SendCity" id="SendCity" type="text" class="form-control" placeholder="Нужно заполнить...">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="SendAdress">Адрес:</label>
+                        <div class="col-sm-8 paddingbottomclass">
+                            <input name = "SendAdress" id="SendAdress" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="SendPhone">Телефон:</label>
+                        <div class="col-sm-8 paddingbottomclass">
+                            <input name = "SendPhone" id="SendPhone" type="text" class="form-control" placeholder="Нужно заполнить...">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="SendPerson">Контактное лицо:</label>
+                        <div class="col-sm-8 paddingbottomclass">
+                            <input name = "SendPerson" id="SendPerson" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="SendCompany">Компания:</label>
+                        <div class="col-sm-8 paddingbottomclass">
+                            <input name = "SendCompany" id="SendCompany" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="SendAddInfo">Примечание:</label>
+                        <div class="col-sm-8">
+                            <input name = "SendAddInfo" id="SendAddInfo" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="recinfo" class="col-sm-6 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+
+                    <div class="row">
+                        <div class="col-sm-6">Данные получателя</div> <div class="col-sm-6"><a href="#rec" class="btn btn-default" data-toggle="collapse">Заполнить из справочника</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="rec" class="collapse">
+                            <table class = "dispatch table-striped table-hover" >
+                                <tr>
+                                    <th>Наименование</th>
+                                    <th>Город</th>
+                                    <th>Адрес</th>
+                                    <th style="display: none">Телефон</th>
+                                    <th style="display: none">Контактное лицо</th>
+                                    <th style="display: none">Компания</th>
+                                    <th style="display: none">Доп. информация</th>
+                                    <th></th>
+                                </tr>
+
+                                <?
+                                        for($i=0; $i<$quantity; $i++) {
+                                        $name = $dataResult->table[$i]->name;
+                                echo '<tr>
+                                    <td id = "recname'.$i.'">'.$name.'</td>
+                                    <td id = "reccity'.$i.'">'.$dataResult->table[$i]->city.'</td>
+                                    <td id = "recaddress'.$i.'">'.$dataResult->table[$i]->address.'</td>
+                                    <td style="display: none" id = "recphone'.$i.'">'.$dataResult->table[$i]->phone.'</td>
+                                    <td style="display: none" id = "recperson'.$i.'">'.$dataResult->table[$i]->person.'</td>
+                                    <td style="display: none" id = "reccompany'.$i.'">'.$dataResult->table[$i]->company.'</td>
+                                    <td style="display: none" id = "recaddinfo'.$i.'">'.$dataResult->table[$i]->addinfo.'</td>
+                                    <td> <button type="button" class="btn btn-default btn-xs" onClick ="recdir('.$i.')">Заполнить</button></td>
+                                </tr>';
+
+                                }?>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="SendCity">Город:</label>
+                        <div class="col-sm-8 paddingbottomclass">
+                            <input name = "RecCity" id="RecCity" type="text" class="form-control" placeholder="Нужно заполнить...">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="SendAdress">Адрес:</label>
+                        <div class="col-sm-8 paddingbottomclass">
+                            <input name = "RecAdress" id="RecAdress" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="SendPhone">Телефон:</label>
+                        <div class="col-sm-8 paddingbottomclass">
+                            <input name = "RecPhone" id="RecPhone" type="text" class="form-control" placeholder="Нужно заполнить...">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="SendPerson">Контактное лицо:</label>
+                        <div class="col-sm-8 paddingbottomclass">
+                            <input name = "RecPerson" id="RecPerson" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="SendCompany">Компания:</label>
+                        <div class="col-sm-8 paddingbottomclass">
+                            <input name = "RecCompany" id="RecCompany" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="SendAddInfo">Примечание:</label>
+                        <div class="col-sm-8">
+                            <input name = "RecAddInfo" id="RecAddInfo" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="geninfo" class="col-sm-12 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Грузы</div>
+                <div class="panel-body">
+
+                    <div  id="cargo">
+                        <div class="form-group row" id = "div0">
+                            <div class="col-sm-1">Вес (кг):</div>
+                            <div class="col-sm-2"><input name = "0" id="m0" type="number" class="form-control" value = "0.2" placeholder="Вес (кг)" onchange='settotal()'></div>
+                            <div class="col-sm-1">Размер (см):</div>
+                            <div class="col-sm-4">
+
+                                <div class="row">
+                                    <div class="col-sm-3"><input name = "0" id="l0" type="number" class="form-control" value = "10" onchange='setv(this.name)'></div>
+                                    <div class="col-sm-1">Х</div>
+                                    <div class="col-sm-3"><input name = "0" id="w0" type="number" class="form-control" value = "20" onchange='setv(this.name)'></div>
+                                    <div class="col-sm-1">Х</div>
+                                    <div class="col-sm-3"><input name = "0" id="h0" type="number" class="form-control" value = "5" onchange='setv(this.name)'></div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-1">Объем (м.куб.):</div>
+                            <div class="col-sm-2"><input readonly name = "0" id="v0" type="number" value = "0.001" class="form-control" placeholder=""></div>
+                            <div class="col-sm-1"><button name = "0" type="button" class="btn btn-default disabled" onclick="removecargo(this.name)">Удал.</button></div>
+                        </div>
+                    </div>
+                    <div id ="add-cargo-button" class = "row"><div class="col-sm-2"><button type="button" class="btn btn-default" onclick="addcargo()">Добавить место</button></div>
+
+                        <div class="col-sm-1">Количество мест:</div>
+                        <div class="col-sm-2"><input readonly id="totalq" type="number" value = "1" class="form-control" ></div>
+                        <div class="col-sm-1">Итого вес (кг):</div>
+                        <div class="col-sm-2"><input readonly id="totalm" type="number" value = "0.2" class="form-control"></div>
+                        <div class="col-sm-1">Объемный вес (кг):</div>
+                        <div class="col-sm-2"><input readonly id="totalv" type="number" value = "0.2" class="form-control"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Данные об отправлении</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="sel1">Вид доставки:</label>
+                        <div class="col-sm-9 paddingbottomclass">
+                            <select class="form-control" name = "DelMethod" id="DelMethod">
+                                <option selected value="ДверьДверь">Дверь-Дверь</option>
+                                <option value="ДверьСклад">Дверь-Склад</option>
+                                <option value="СкладДверь">Склад-Дверь</option>
+                                <option value="СкладСклад">Склад-Склад</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="sel1">Срочность:</label>
+                        <div class="col-sm-9 paddingbottomclass">
+                            <select class="form-control" name = "DelType" id="DelType">
+                                <option selected value="Стандарт">Стандарт</option>
+                                <option value="Экспресс">Экспресс</option>
+                                <option value="СуперЭкспресс">Супер Экспресс</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="sel1">Тип оплаты:</label>
+                        <div class="col-sm-9 paddingbottomclass">
+                            <select class="form-control" name = "PayType" id="PayType">
+                                <option value="ОплатаНаличнымиПриОтправлении">Наличными при отправлении</option>
+                                <option value="ОплатаНаличнымиПриПолучении">Наличными при получении</option>
+                                <option selected value="БезналичнаяОплата">Безналичная оплата по договору</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="sel1">Страховая стоимость:</label>
+                        <div class="col-sm-9 paddingbottomclass">
+                            <input class="form-control" name = "InsurValue" id="InsurValue" type="number">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="sel1">Наложенный платеж:</label>
+                        <div class="col-sm-9 paddingbottomclass">
+                            <input class="form-control" name = "COD" id="COD" type="number">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="sel1">Стоимость доставки:</label>
+                        <div class="col-sm-9 paddingbottomclass">
+                            <input readonly class="form-control" name = "price" id="price" type="text">
+
+                        </div>
+                    </div>
+                    <div id ="result-adddisp"><button type="button" class="btn btn-default" onclick="getprice()">Расчет стоимости доставки</button>     <button type="button" class="btn btn-default" onclick="sendadddisp()">Завершить оформление накладной</button></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<%- include("parts/footer.ejs") %>

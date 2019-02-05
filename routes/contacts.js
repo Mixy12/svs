@@ -4,12 +4,8 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  if(req.session.logged == true){
-    menu = 'Кабинет';
-  }else{
-    menu = 'Вход';
-  }
-  res.render('contacts', { menu: menu });
+
+  res.render('contacts', { logget: req.session.logged });
 });
 
 module.exports = router;

@@ -1,5 +1,4 @@
 var express = require('express');
-var menucore = require('../public/functions/menucore');
 
 var router = express.Router();
 
@@ -8,14 +7,13 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   sess = req.session;
   console.log(sess);
-  var menusetting = menucore.menusetting(req.session.logged);
-  /*if(req.session.logged == true){
-    menu = 'Кабинет';
-  }else{
-    menu = 'Вход';
-  }*/
-
-  res.render('index', { menu: menusetting });
+  if(req.query.logout == 'true'){
+    req.session.logged = false;
+    req.session.userId = '';
+    req.session.hash = '';
+    req.session.alias = '';
+  }
+  res.render('index', { logget: req.session.logged });
 });
 
 module.exports = router;

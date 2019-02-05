@@ -40,6 +40,8 @@ app.use('/track', require('./routes/track'));
 app.use('/ajax', ajaxRouter);
 app.use('/calc', calcRouter);
 app.use('/contacts', require('./routes/contacts'));
+app.use('/requestdelivery', require('./routes/requestdelivery'));
+app.use('/mydisp', require('./routes/mydisp'));
 
 
 // catch 404 and forward to error handler

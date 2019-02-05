@@ -21,7 +21,7 @@ router.post("/", urlencodedParser, function (request, response) {
     UserIP:request.connection.remoteAddress.toString()
   };
   var args = {AutorizationXDTO:params};
-  console.log(args);
+  //console.log(args);
 
   soap.createClient(url, function(err, client) {
     client.SiteAutorization(args, function(err, result) {
@@ -33,7 +33,7 @@ router.post("/", urlencodedParser, function (request, response) {
       } else{
        j = JSON.parse(data);
       }
-      console.log(j);
+      //console.log(j);
 
       if(j!='f'){
         sess.logged = true;
@@ -42,11 +42,11 @@ router.post("/", urlencodedParser, function (request, response) {
         sess.alias = j.alias;
         console.log(sess);
         response.render('cabinet',{
-          menu: 'Кабинет'
+          logget: request.session.logged
         });}
       else{
         response.render('login',{
-          menu: 'Вход'
+          logget: request.session.logged
         })
       }
 
@@ -67,11 +67,11 @@ router.get('/', function(req, res, next) {
 
   if(req.session.logged == true) {
     res.render('cabinet',{
-      menu: menusetting
+      logget: req.session.logged
     });
   }else{
     res.render('login',{
-      menu: menusetting
+      logget: req.session.logged
     });
   }
 });

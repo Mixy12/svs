@@ -28,7 +28,20 @@
                     </ul>
                 </li>
                 <li><a href="/contacts">Контакты</a></li>
-                <li><a href="/private" class="btn btn-default"><%=menu %></a></li>
+                <% if(logget){%>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Кабинет <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/private">Кабинет</a></li>
+                        <li><a href="/mydisp">Мои накладные</a></li>
+                        <li><a href="/requestdelivery">Добавить накладную</a></li>
+                        <li><a href="/?logout=true">Выход</a></li>
+
+                    </ul>
+                </li>
+                <% }else {%>
+                <li><a href="/private" class="btn btn-default"> Вход</a></li>
+                <%}%>
             </ul>
         </div>
     </div>

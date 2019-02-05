@@ -10,7 +10,7 @@ h1,h2,h3,h4,h5,h6{
 	font-family: 'Merriweather', serif;
 }
 
-.btn{border-radius: 50px}
+.btn{border-radius: 7px}
 .btn-default{background:#ee1c25; border-color:#ee1c25; color:#fff;}
 .btn-default:hover, .btn-default:focus{background:#ee1c25; color:#fff; border-color:#ee1c25 }
 .btn-transparent{border:2px solid #fff; color:#fff;}
@@ -135,7 +135,7 @@ h1,h2,h3,h4,h5,h6{
 .navbar-transparent li a.btn-default{
     background:#ee1c25;
     padding:8px 20px;
-    border-radius:50px;
+    border-radius:7px;
     margin-top:10px;
     border:none;
     color:#fff;
@@ -580,4 +580,8 @@ body {
 }
 a{
     color:#ee1c25;
+}
+
+.paddingbottomclass {
+    padding-bottom: 7px;
 }
