@@ -127,12 +127,12 @@ router.post("/finddisp", urlencodedParser, function (request, response) {
     "to": request.body.to.toString()
   };
   var args = {LoginXDTO:params};
-  console.log(args);
+  //console.log(args);
 
   soap.createClient(url, function(err, client) {
     client.SiteDispatch(args, function(err, result) {
       var data = result.return;
-      console.log(data);
+      //console.log(data);
       var j = JSON.parse(data);
       //console.log(p1);
       //console.log(obj);
@@ -140,6 +140,12 @@ router.post("/finddisp", urlencodedParser, function (request, response) {
       response.send(j.table);
     });
   });
+
+
+});
+
+router.post("/disp", urlencodedParser, function (request, response) {
+
 
 
 });

@@ -177,7 +177,7 @@ function finddispSuccess (data){
         "        </tbody>\n" +
         "    </table>");
     arr.forEach(function(item, i, arr) {
-        $("#result").append("<tr id=\""+item.num+"\"><td>"+item.num+"</td><td>"+item.startdate+"</td><td>"+item.sendcity+"</td><td>"+item.reccity+"</td><td>"+item.reccom+"</td><td>"+item.quan+"</td><td>"+item.weight+"</td><td>"+item.type+"</td><td>"+item.status+"</td><td>"+item.date+"</td><td>"+item.rec+"</td></tr>"
+        $("#result").append("<tr id=\"disp\"   name=\""+item.num+"\"><td>"+item.num+"</td><td>"+item.startdate+"</td><td>"+item.sendcity+"</td><td>"+item.reccity+"</td><td>"+item.reccom+"</td><td>"+item.quan+"</td><td>"+item.weight+"</td><td>"+item.type+"</td><td>"+item.status+"</td><td>"+item.date+"</td><td>"+item.rec+"</td></tr>"
         );
     });
 
@@ -213,6 +213,15 @@ $('#findDisp').bind('click',function () {
         success: finddispSuccess
     });
 });
+
+
+$(document).on('dblclick', '#disp', function() {
+
+    alert($(this).attr('name'));
+    window.open('/disp/'+$(this).attr('name'));
+});
+
+
 
 function addZero(i) {
     return (i < 10)? "0" + i: i;

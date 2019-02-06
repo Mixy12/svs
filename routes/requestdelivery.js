@@ -7,11 +7,15 @@ var data;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-
-                res.render('requestdelivery',
-                    {
-                    logget: req.session.logged
-                    })
-        })
+    if(req.session.logged == true) {
+        res.render('requestdelivery',{
+            logget: req.session.logged
+        });
+    }else{
+        res.render('login',{
+            logget: req.session.logged
+        });
+    }
+        });
 
 module.exports = router;
