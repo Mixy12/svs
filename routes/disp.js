@@ -1,5 +1,4 @@
 var express = require('express');
-var jquery = require('jquery');
 var router = express.Router();
 const soap = require('soap');
 const url = 'http://82.200.49.118/cs/maws.1cws?wsdl';
