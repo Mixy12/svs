@@ -4,7 +4,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  if(req.session.logged == true) {
+  if(req.session.logged === true) {
     res.render('mydisp',{
       logget: req.session.logged
     });
