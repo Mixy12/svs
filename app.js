@@ -30,7 +30,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/public', express.static('public'));
+app.use('/public', express.static(__dirname + '/public'));
+//app.use(express.static(path.join(__dirname, '/public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -43,6 +44,7 @@ app.use('/contacts', require('./routes/contacts'));
 app.use('/disp', require('./routes/disp'));
 app.use('/requestdelivery', require('./routes/requestdelivery'));
 app.use('/mydisp', require('./routes/mydisp'));
+app.use('/pdfdisp', require('./routes/pdfdisp'));
 
 
 // catch 404 and forward to error handler

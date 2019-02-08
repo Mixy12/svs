@@ -56,7 +56,7 @@ $("#calcbutton").bind('click',function() {
     let sendCity = $('#sendCity').val();
     let recdCity = $('#recdCity').val();
     let weight = $('#weight').val();
-    let volume = $('#length').val() * $('#height').val() * $('#width').val() /5000;
+    let volume = $('#length').val() * $('#height').val() * $('#width').val() /1000000;
 
     $.ajax({
         url: "/ajax/calculate",
@@ -125,34 +125,6 @@ function removecargo(name) {
 };
 
 //-----------------------------------------------------
-function deliverySuccess (data){
-
-    var arr = JSON.parse(data);
-
-    arr.forEach(function(item, i, arr) {
-        $("#directory").append("<tr><td id = \"thnamebut"+i+"\">"+item.name+"</td><td id=\"thcitybut\">"+item.city+"</td><td id=\"thaddressbut"+i+"\">"+item.address+"</td></tr>"
-        );
-    });
-}
-
-function deliveryfuncbefore (){}
-
-function deliveryfuncerror (){alert( "Ошибка :(");}
-
-
-
-$('#asprav').bind('click',function () {
-
-    $.ajax({
-        url: "/ajax/reqdel",
-        type: "POST",
-        data: ({}),
-        dataType: "html",
-        beforeSend: deliveryfuncbefore,
-        error: deliveryfuncerror,
-        success: deliverySuccess
-    });
-});
 
 //-----------------------------------------------------------
 function finddispSuccess (data){
@@ -226,3 +198,164 @@ $(document).on('dblclick', '#disp', function() {
 function addZero(i) {
     return (i < 10)? "0" + i: i;
 }
+
+$(document).ready(function() {
+    let availableTags = citys;
+
+    $('.complite').autocomplete({
+        source: availableTags
+    })
+});
+
+$(document).on('dblclick', '.tblSpravIn', function() {
+
+    let city = $(this).find('[name = city]').text();
+    let address = $(this).find('[name = address]').text();
+    let phone = $(this).find('[name = phone]').text();
+    let person = $(this).find('[name = person]').text();
+    let company = $(this).find('[name = company]').text();
+    let addinfo = $(this).find('[name = addinfo]').text();
+    $('#SendCity').val(city);
+    $('#SendAdress').val(address);
+    $('#SendPhone').val(phone);
+    $('#SendPerson').val(person);
+    $('#SendCompany').val(company);
+    $('#SendAddInfo').val(addinfo);
+    $('#asprav').click();
+});
+
+$(document).on('dblclick', '.tblSpravTo', function() {
+
+    let city = $(this).find('[name = city]').text();
+    let address = $(this).find('[name = address]').text();
+    let phone = $(this).find('[name = phone]').text();
+    let person = $(this).find('[name = person]').text();
+    let company = $(this).find('[name = company]').text();
+    let addinfo = $(this).find('[name = addinfo]').text();
+    $('#RecCity').val(city);
+    $('#RecAdress').val(address);
+    $('#RecPhone').val(phone);
+    $('#RecPerson').val(person);
+    $('#RecCompany').val(company);
+    $('#RecAddInfo').val(addinfo);
+    $('#butsprav').click();
+});
+
+
+function newcalcfuncSuccess (data){
+    $('#result').text('');
+    var arr = JSON.parse(data);
+    alert(arr);
+    arr.forEach(function(item, i, arr) {
+        $("#result").append("<br><p>По направлению "+$('#SendCity').val()+" - "+$('#RecCity').val()+" предлагаем следущие тарифы:</p>" +
+            " <ul><li>Физический вес: "+$('#totalm').val()+"</li><li>Объемный вес: "+$('#totalv').val()+"</li><li>Стоимость доставки: "+item.price+"</li><li>Срок доставки(раб. дней): "+item.time+"</li></ul>");
+    });
+}
+
+function newcalcfuncbefore (){document.getElementById('result').innerHTML ="Ожидание ...";}
+
+function newcalcfuncerror (){alert( "Ошибка :(");}
+
+$("#calcbtn").bind('click',function() {
+    let sendCity = $('#SendCity').val();
+    let recdCity = $('#RecCity').val();
+    let weight = $('#totalm').val();
+    let volume = $('#totalv').val()/200;
+    alert(sendCity);
+    alert(weight);
+    $.ajax({
+        url: "/ajax/calculate",
+        type: "POST",
+        data: ({
+            sendCity:  sendCity,
+            recdCity: recdCity,
+            weight: weight,
+            volume: volume
+        }),
+        dataType: "html",
+        beforeSend: newcalcfuncbefore,
+        error: newcalcfuncerror,
+        success: newcalcfuncSuccess
+    })
+
+
+});
+//-----------------Отправка накладной---------------------------------
+
+function newdispfuncSuccess (data){alert(data)}
+
+function newdispfuncbefore (){alert('ждёмс..')}
+
+function newdispfuncerror (){alert( "Ошибка :(");}
+$(document).ready(function () {
+    $("#newDispSend").bind('click',function() {
+        let SendCity = $('#SendCity').val();
+        let SendAdress = $('#SendAdress').val();
+        let SendPhone = $('#SendPhone').val();
+        let SendPerson = $('#SendPerson').val();
+        let SendCompany = $('#SendCompany').val();
+        let SendAddInfo = $('#SendAddInfo').val();
+        let RecCity = $('#RecCity').val();
+        let RecAdress = $('#RecAdress').val();
+        let RecPhone = $('#RecPhone').val();
+        let RecPerson = $('#RecPerson').val();
+        let RecCompany = $('#RecCompany').val();
+        let RecAddInfo = $('#RecAddInfo').val();
+        let DelType = $('#DelType').val();
+        let PayType = $('#PayType').val();
+        let InsurValue = $('#InsurValue').val();
+        let COD = $('#COD').val();
+
+        let curDate = $('#curDate').val();
+        let curTime = $('#curTime').val();
+        let Uved = $('#Uved').is(':checked');
+        let Scan = $('#Scan').is(':checked');
+        let Opasn = $('#Opasn').is(':checked');
+        let Podp = $('#Podp').is(':checked');
+
+        var carg = [];
+        $('div[id^="div"]').each(function () {
+            let m = $(this).find('[id^="m"]').val();
+            let l = $(this).find('[id^="l"]').val();
+            let w = $(this).find('[id^="w"]').val();
+            let h = $(this).find('[id^="h"]').val();
+            carg.push([m,l,w,h]);
+        });
+        carg = JSON.stringify(carg);
+        $.ajax({
+            url: "/requestdelivery",
+            type: "POST",
+            data: ({
+                SendCity:SendCity,
+                SendAdress:SendAdress,
+                SendPhone:SendPhone,
+                SendPerson:SendPerson,
+                SendCompany:SendCompany,
+                SendAddInfo:SendAddInfo,
+                RecCity:RecCity,
+                RecAdress:RecAdress,
+                RecPhone:RecPhone,
+                RecPerson:RecPerson,
+                RecCompany:RecCompany,
+                RecAddInfo:RecAddInfo,
+                DelType:DelType,
+                PayType:PayType,
+                InsurValue:InsurValue,
+                COD:COD,
+                carg:carg,
+                curDate:curDate,
+                curTime:curTime,
+                Uved:Uved,
+                Scan:Scan,
+                Opasn:Opasn,
+                Podp:Podp
+            }),
+            dataType: "html",
+            beforeSend: newdispfuncbefore,
+            error: newdispfuncerror,
+            success: newdispfuncSuccess
+        })
+
+
+    });
+});

@@ -23,13 +23,13 @@ router.get('/:num', function(req, res, next) {
         client.test1(args, function(err, result) {
             if (err){console.log("second err is " + err)};
 
-            console.log("result is " + result);
+            //console.log("result is " + result);
             var data = result.return;
             //console.log("data is " + data);
             var j = JSON.parse(data);
-            //console.log("j is " + j);
+            console.log(j);
             //var k = JSON.parse(j.val);
-            res.render('disp', { num: j.SendCity});
+            res.render('disp', { num: j});
         });
     });
 

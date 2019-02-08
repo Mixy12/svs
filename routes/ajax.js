@@ -88,7 +88,7 @@ router.post("/calculate", urlencodedParser, function (request, response) {
 
 });
 
-
+//--------------заполнить из справочника----
 router.post("/reqdel", urlencodedParser, function (request, response) {
   var params = {
     "UserId": request.session.userId,
@@ -127,11 +127,14 @@ router.post("/finddisp", urlencodedParser, function (request, response) {
     "to": request.body.to.toString()
   };
   var args = {LoginXDTO:params};
-  //console.log(args);
+
 
   soap.createClient(url, function(err, client) {
+    if(err){console.log(err)}
     client.SiteDispatch(args, function(err, result) {
+      if(err){console.log(err)}
       var data = result.return;
+      //console.log("data is "+ data);
       //console.log(data);
       var j = JSON.parse(data);
       //console.log(p1);

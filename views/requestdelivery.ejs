@@ -65,23 +65,18 @@
                                     <th style="display: none">Доп. информация</th>
                                     <th></th>
                                 </tr>
+                                <% table.forEach(function(tab) { %>
+                                <tr class="tblSpravIn">
+                                    <td name="ref"><%=tab.ref %></td>
+                                    <td name="city"><%=tab.city %></td>
+                                    <td name="address"><%=tab.address %></td>
+                                    <td name="phone" style="display: none"><%=tab.phone %></td>
+                                    <td name="person" style="display: none"><%=tab.person %></td>
+                                    <td name="company" style="display: none"><%=tab.company %></td>
+                                    <td name="addinfo" style="display: none"><%=tab.addinfo %></td>
+                                </tr>
+                                <% }); %>
 
-                                <!--
-                                        for($i=0; $i<$quantity; $i++) {
-                                        $name = $dataResult->table[$i]->name;
-                                //print_r($dataResult);
-                                echo '<tr>
-                                    <td id = "thnamebut'.$i.'">'.$name.'</td>
-                                    <td id = "thcitybut'.$i.'">'.$dataResult->table[$i]->city.'</td>
-                                    <td id = "thaddressbut'.$i.'">'.$dataResult->table[$i]->address.'</td>
-                                    <td style="display: none" id = "thphonebut'.$i.'">'.$dataResult->table[$i]->phone.'</td>
-                                    <td style="display: none" id = "thpersonbut'.$i.'">'.$dataResult->table[$i]->person.'</td>
-                                    <td style="display: none" id = "thcompanybut'.$i.'">'.$dataResult->table[$i]->company.'</td>
-                                    <td style="display: none" id = "thaddinfobut'.$i.'">'.$dataResult->table[$i]->addinfo.'</td>
-                                    <td> <button type="button" class="btn btn-default btn-xs" onClick ="senddir('.$i.')">Заполнить</button></td>
-                                </tr>';
-
-                                }-->
                             </table>
                         </div>
                     </div>
@@ -91,7 +86,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="SendCity">Город:</label>
                         <div class="col-sm-8 paddingbottomclass">
-                            <input name = "SendCity" id="SendCity" type="text" class="form-control" placeholder="Нужно заполнить...">
+                            <input name = "SendCity" id="SendCity" type="text" class="form-control complite" placeholder="Нужно заполнить...">
                         </div>
                     </div>
                     <div class="form-group">
@@ -132,12 +127,12 @@
                 <div class="panel-heading">
 
                     <div class="row">
-                        <div class="col-sm-6">Данные получателя</div> <div class="col-sm-6"><a href="#rec" class="btn btn-default" data-toggle="collapse">Заполнить из справочника</a>
+                        <div class="col-sm-6">Данные получателя</div> <div class="col-sm-6"><a href="#rec" id="butsprav" class="btn btn-default" data-toggle="collapse">Заполнить из справочника</a>
                         </div>
                     </div>
                     <div class="row">
                         <div id="rec" class="collapse">
-                            <table class = "dispatch table-striped table-hover" >
+                            <table class = "table dispatch table-striped table-hover" >
                                 <tr>
                                     <th>Наименование</th>
                                     <th>Город</th>
@@ -149,21 +144,17 @@
                                     <th></th>
                                 </tr>
 
-                                <?
-                                        for($i=0; $i<$quantity; $i++) {
-                                        $name = $dataResult->table[$i]->name;
-                                echo '<tr>
-                                    <td id = "recname'.$i.'">'.$name.'</td>
-                                    <td id = "reccity'.$i.'">'.$dataResult->table[$i]->city.'</td>
-                                    <td id = "recaddress'.$i.'">'.$dataResult->table[$i]->address.'</td>
-                                    <td style="display: none" id = "recphone'.$i.'">'.$dataResult->table[$i]->phone.'</td>
-                                    <td style="display: none" id = "recperson'.$i.'">'.$dataResult->table[$i]->person.'</td>
-                                    <td style="display: none" id = "reccompany'.$i.'">'.$dataResult->table[$i]->company.'</td>
-                                    <td style="display: none" id = "recaddinfo'.$i.'">'.$dataResult->table[$i]->addinfo.'</td>
-                                    <td> <button type="button" class="btn btn-default btn-xs" onClick ="recdir('.$i.')">Заполнить</button></td>
-                                </tr>';
-
-                                }?>
+                                <% table.forEach(function(tab) { %>
+                                <tr class="tblSpravTo">
+                                    <td name="ref"><%=tab.ref %></td>
+                                    <td name="city"><%=tab.city %></td>
+                                    <td name="address"><%=tab.address %></td>
+                                    <td name="phone" style="display: none"><%=tab.phone %></td>
+                                    <td name="person" style="display: none"><%=tab.person %></td>
+                                    <td name="company" style="display: none"><%=tab.company %></td>
+                                    <td name="addinfo" style="display: none"><%=tab.addinfo %></td>
+                                </tr>
+                                <% }); %>
                             </table>
                         </div>
 
@@ -173,7 +164,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="SendCity">Город:</label>
                         <div class="col-sm-8 paddingbottomclass">
-                            <input name = "RecCity" id="RecCity" type="text" class="form-control" placeholder="Нужно заполнить...">
+                            <input name = "RecCity" id="RecCity" type="text" class="form-control complite" placeholder="Нужно заполнить...">
                         </div>
                     </div>
                     <div class="form-group">
@@ -253,16 +244,22 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Данные об отправлении</div>
                 <div class="panel-body">
+
                     <div class="form-group">
-                        <label class="control-label col-sm-3" for="sel1">Вид доставки:</label>
+                        <label class="control-label col-sm-3" for="sel1">Дата приезда курьера:</label>
                         <div class="col-sm-9 paddingbottomclass">
-                            <select class="form-control" name = "DelMethod" id="DelMethod">
-                                <option selected value="ДверьДверь">Дверь-Дверь</option>
-                                <option value="ДверьСклад">Дверь-Склад</option>
-                                <option value="СкладДверь">Склад-Дверь</option>
-                                <option value="СкладСклад">Склад-Склад</option>
-                            </select>
+                            <input  id="curDate" type="text" class="form-control complite" >
+
                         </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="sel1">Время приезда курьера:</label>
+                        <div class="col-sm-9 paddingbottomclass">
+                            <input  id="curTime" type="text" class="form-control complite" >
+
+                        </div>
+
                     </div>
 
                     <div class="form-group">
@@ -274,6 +271,7 @@
                                 <option value="СуперЭкспресс">Супер Экспресс</option>
                             </select>
                         </div>
+
                     </div>
 
                     <div class="form-group">
@@ -301,6 +299,35 @@
 
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="sel1">С уведомлением</label>
+                        <div class="col-sm-9 paddingbottomclass">
+                            <input class="form-control"  id="Uved" type="checkbox">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="sel1">Скан документа</label>
+                        <div class="col-sm-9 paddingbottomclass">
+                            <input class="form-control"  id="Scan" type="checkbox">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="sel1">Опасный груз</label>
+                        <div class="col-sm-9 paddingbottomclass">
+                            <input class="form-control"  id="Opasn" type="checkbox">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="sel1">Вернуть подписанный</label>
+                        <div class="col-sm-9 paddingbottomclass">
+                            <input class="form-control"  id="Podp" type="checkbox">
+
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="control-label col-sm-3" for="sel1">Стоимость доставки:</label>
                         <div class="col-sm-9 paddingbottomclass">
@@ -308,13 +335,19 @@
 
                         </div>
                     </div>
-                    <div id ="result-adddisp"><button type="button" class="btn btn-default" onclick="getprice()">Расчет стоимости доставки</button>     <button type="button" class="btn btn-default" onclick="sendadddisp()">Завершить оформление накладной</button></div>
+                    <div id ="result-adddisp"><button id="calcbtn" type="button" class="btn btn-default"">Расчет стоимости доставки</button>     <button id="newDispSend" type="button" class="btn btn-default" >Завершить оформление накладной</button></div>
+                    <div class="container">
+                        <p id="result"></p>
+                    </div>
+                </div>
+                <div class="panel-body">
+
                 </div>
             </div>
 
         </div>
     </div>
-
+    <script src="/public/js/citys.js" type="text/javascript"></script>
 </div>
 
 
