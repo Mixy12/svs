@@ -74,7 +74,7 @@ h1,h2,h3,h4,h5,h6{
 .intro:before{
 	content:" ";
 	display: block;
-	background: rgba(0,0,0,0.6);
+	background: rgba(0,0,0,0.2);
 	width:100%;
 	position: absolute;
 	height: 100%
@@ -112,8 +112,8 @@ h1,h2,h3,h4,h5,h6{
     background:none;
 }
 .nav .open > a, .nav .open > a:focus, .nav .open > a:hover{
-	color:#fff;
-    background: #ee1c25;
+
+    background: #ffffff;
 }
 
 .navbar-transparent .navbar-nav li .dropdown-menu{
@@ -584,4 +584,19 @@ a{
 
 .paddingbottomclass {
     padding-bottom: 7px;
+}
+
+.mtop {
+margin-top: 65px;
+}
+
+h7 {
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.uim {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 15px;
 }
