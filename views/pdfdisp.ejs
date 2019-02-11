@@ -1,3 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        @font-face {
+            font-family: Code39; /* Гарнитура шрифта */
+            src: url(/public/fonts/Code39.ttf); /* Путь к файлу со шрифтом */
+        }
+    </style>
+</head>
+<body>
 <div>
     <table border="0" cellpadding="0" cellspacing="0" style="width: 190mm; height: 120mm">
         <tbody>
@@ -7,13 +19,13 @@
                     <tbody>
                     <tr>
                         <td rowspan="1" style="width: 25%;">
-                            <div style="text-align: center;"><img src="/images/logo.png" alt="Экспресс Кинетика"></div>
+                            <div style="text-align: center;"><img src="/public/img/logo.png" alt="СВС-Логистик"></div>
                         </td>
                         <td colspan="2" style="width: 40%; text-align: center;">
-                            <div id = "reccityheader"><font size="6">'.$RecCity.'</font></div>
+                            <div id = "reccityheader"><font size="6"><%=num.RecCity %></font></div>
                         </td>
                         <td colspan="7" style="width: 35%;">
-                            <div><font size="2">'. barcode::code39($num).'<font></div>
+                            <p style="font-family: Code39; font-size: 28px;">*<%=params %>*</p>
                         </td>
                     </tr>
                     </tbody>
@@ -23,35 +35,34 @@
         <tr>
             <td style="width: 50%;">
                 <div><font size="3"><b>Отправитель:</b></font><br>
-                    <font size="2"><b>Город: </b><span id="SendCity">'.$SendCity.'</span></font><br>
-                    <font size="2"><b>Адрес: </b><span id="SendAdress">'.$SendAdress.'</span></font><br>
-                    <font size="2"><b>Компания: </b><span id="SendCompany">'.$SendCompany.'</span></font><br>
-                    <font size="2"><b>Контактное лицо: </b><span id="SendPerson">'.$SendPerson.'</span></font><br>
-                    <font size="2"><b>Телефон: </b><span id="SendPhone">'.$SendPhone.'</span></font><br>
-                    <font size="2"><b>Доп. информация: </b><span id="SendAddInfo">'.$SendAddInfo.'</span></font></div>
+                    <font size="2"><b>Город: </b><span id="SendCity"><%=num.SendCity %></span></font><br>
+                    <font size="2"><b>Адрес: </b><span id="SendAdress"><%=num.SendAdress %></span></font><br>
+                    <font size="2"><b>Компания: </b><span id="SendCompany"><%=num.SendCompany %></span></font><br>
+                    <font size="2"><b>Контактное лицо: </b><span id="SendPerson"><%=num.SendPerson %></span></font><br>
+                    <font size="2"><b>Телефон: </b><span id="SendPhone"><%=num.SendPhone %></span></font><br>
+                    <font size="2"><b>Доп. информация: </b><span id="SendAddInfo"><%=num.SendAddInfo %></span></font></div>
             </td>
             <td style="width: 50%;">
                 <div><font size="3"><b>Получатель:</b></font><br>
-                    <font size="2"><b>Город: </b><span id="RecCity">'.$RecCity.'</span></font><br>
-                    <font size="2"><b>Адрес: </b><span id="RecAdress">'.$RecAdress.'</span></font><br>
-                    <font size="2"><b>Компания: </b><span id="RecCompany">'.$RecCompany.'</span></font><br>
-                    <font size="2"><b>Контактное лицо: </b><span id="RecPerson">'.$RecPerson.'</span></font><br>
-                    <font size="2"><b>Телефон: </b><span id="RecPhone">'.$RecPhone.'</span></font><br>
-                    <font size="2"><b>Доп. информация: </b><span id="RecAddInfo">'.$RecAddInfo.'</span></font></div>
+                    <font size="2"><b>Город: </b><span id="RecCity"><%=num.RecCity %></span></font><br>
+                    <font size="2"><b>Адрес: </b><span id="RecAdress"><%=num.RecAdress %></span></font><br>
+                    <font size="2"><b>Компания: </b><span id="RecCompany"><%=num.RecCompany %></span></font><br>
+                    <font size="2"><b>Контактное лицо: </b><span id="RecPerson"><%=num.RecPerson %></span></font><br>
+                    <font size="2"><b>Телефон: </b><span id="RecPhone"><%=num.RecPhone %></span></font><br>
+                    <font size="2"><b>Доп. информация: </b><span id="RecAddInfo"><%=num.RecAddInfo %></span></font></div>
             </td>
         </tr>
         <tr>
             <td>
                 <table cellpadding="1"style="width: 100%;">
                     <tbody>
-                    <tr><td style="width: 30%;"><div><font size="1">Плательщик: </font><font size="2"><span id="Customer">'.$Customer.'</span></font></div></td></tr>
-                    <tr><td><div><font size="1">Срочность доставки: </font><font size="2"><b><span id="DelType">'.$DelType.'</span></b></font></div></td></tr>
-                    <tr><td><div><font size="1">Вид доставки: </font><font size="2"><span id="DelMethod">'.$DelMethod.'</span></font></div></td></tr>
-                    <tr><td><div><font size="1">Оплата: </font><font size="2"><span id="PayType">'.$PayType.'</span></font></div></td></tr>
-                    <tr><td><div><font size="1">Стоимость доставки: </font><font size="2"><span id="Price">'.$Price.'</span></font></div></td></tr>
+                    <tr><td style="width: 30%;"><div><font size="1">Плательщик: </font><font size="2"><span id="Customer"><%=num.Customer %></span></font></div></td></tr>
+                    <tr><td><div><font size="1">Срочность доставки: </font><font size="2"><b><span id="DelType"><%=num.DelType %></span></b></font></div></td></tr>
+                    <tr><td><div><font size="1">Оплата: </font><font size="2"><span id="PayType"><%=num.PayType %></span></font></div></td></tr>
+                    <tr><td><div><font size="1">Стоимость доставки: </font><font size="2"><span id="Price"><%=num.Price %></span></font></div></td></tr>
 
-                    <tr><td><div><font size="1">Страховая стоимость: </font><font size="2"><span id="InsurValue">'.$InsurValue.' руб.</span></font></div></td></tr>
-                    <tr><td><div><font size="1">Наложенный платеж: </font><font size="2"><span id="COD">'.$COD.' руб.</span></font></div></td></tr>
+                    <tr><td><div><font size="1">Страховая стоимость: </font><font size="2"><span id="InsurValue"><%=num.InsurValue %> руб.</span></font></div></td></tr>
+                    <tr><td><div><font size="1">Наложенный платеж: </font><font size="2"><span id="COD"><%=num.COD %> руб.</span></font></div></td></tr>
                     </tbody>
                 </table>
             </td>
@@ -67,30 +78,26 @@
                             <td><font size="2">Длина (см)</font></td>
                             <td><font size="2">Ширина (см)</font></td>
                             <td><font size="2">Высота (см)</font></td>
-                        </tr>';
-                        $Cargohtml = '';
+                        </tr>
 
-                        $count = count($Cargo);
-                        for($i=0; $i<$count; $i++) {
-                        $Cargohtml = $Cargohtml.'<tr>
-                            <td align="center"><font size="2">'.($i+1).'</font></td>
-                            <td align="center"><font size="2">'.$Cargo[$i]->m.'</font></td>
-                            <td align="center"><font size="2">'.$Cargo[$i]->h.'</font></td>
-                            <td align="center"><font size="2">'.$Cargo[$i]->l.'</font></td>
-                            <td align="center"><font size="2">'.$Cargo[$i]->w.'</font></td>
-                        </tr>';
-                        };
-                        $Footerhtml =
+                        <% var counter = 0; %>
+                        <% num.Cargo.forEach(function(tab) { %>
+                        <tr>
+                            <td align="center"><font size="2"><%=counter = counter+1 %></font></td>
+                            <td align="center"><font size="2"><%=tab.m %></font></td>
+                            <td align="center"><font size="2"><%=tab.h %></font></td>
+                            <td align="center"><font size="2"><%=tab.l %></font></td>
+                            <td align="center"><font size="2"><%=tab.w %></font></td>
+                        </tr>
 
-                        '
-
+                        <%});%>
                     </table>
                     <table cellpadding="1"style="width: 100%;">
                         <tbody>
                         <tr>
-                            <td style="width: 30%;"><div><font size="1">Итого мест: </font><font size="2"><b><span id="Totalq">'.$Totalq.'</span></b></font></div></td>
-                            <td><div><font size="1">Общий вес: </font><font size="2"><b><span id="Totalm">'.$Totalm.'</span></b></font></div></td>
-                            <td><div><font size="1">Объемный вес: </font><font size="2"><b><span id="Totalv">'.$Totalv.'</span></b></font></div></td></tr>
+                            <td style="width: 30%;"><div><font size="1">Итого мест: </font><font size="2"><b><span id="Totalq"><%=num.Totalq %></span></b></font></div></td>
+                            <td><div><font size="1">Общий вес: </font><font size="2"><b><span id="Totalm"><%=num.Totalm %></span></b></font></div></td>
+                            <td><div><font size="1">Объемный вес: </font><font size="2"><b><span id="Totalv"><%=num.Totalv %></span></b></font></div></td></tr>
                         </tbody>
                     </table>
                     <div>
@@ -123,4 +130,130 @@
         </tr>
         </tbody>
     </table>
-    <div>
+</div>
+
+<table border="0" cellpadding="0" cellspacing="0" style="width: 190mm; height: 120mm">
+    <tbody>
+    <tr style="border-bottom: 1px solid black">
+        <td colspan="2" style="border-bottom: 1px solid black">
+            <table border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
+                <tbody>
+                <tr>
+                    <td rowspan="1" style="width: 25%;">
+                        <div style="text-align: center;"><img src="/public/img/logo.png" alt="СВС-Логистик"></div>
+                    </td>
+                    <td colspan="2" style="width: 40%; text-align: center;">
+                        <div id = "reccityheader"><font size="6"><%=num.RecCity %></font></div>
+                    </td>
+                    <td colspan="7" style="width: 35%;">
+                        <p style="font-family: Code39; font-size: 28px;">*<%=params %>*</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td style="width: 50%;">
+            <div><font size="3"><b>Отправитель:</b></font><br>
+                <font size="2"><b>Город: </b><span id="SendCity"><%=num.SendCity %></span></font><br>
+                <font size="2"><b>Адрес: </b><span id="SendAdress"><%=num.SendAdress %></span></font><br>
+                <font size="2"><b>Компания: </b><span id="SendCompany"><%=num.SendCompany %></span></font><br>
+                <font size="2"><b>Контактное лицо: </b><span id="SendPerson"><%=num.SendPerson %></span></font><br>
+                <font size="2"><b>Телефон: </b><span id="SendPhone"><%=num.SendPhone %></span></font><br>
+                <font size="2"><b>Доп. информация: </b><span id="SendAddInfo"><%=num.SendAddInfo %></span></font></div>
+        </td>
+        <td style="width: 50%;">
+            <div><font size="3"><b>Получатель:</b></font><br>
+                <font size="2"><b>Город: </b><span id="RecCity"><%=num.RecCity %></span></font><br>
+                <font size="2"><b>Адрес: </b><span id="RecAdress"><%=num.RecAdress %></span></font><br>
+                <font size="2"><b>Компания: </b><span id="RecCompany"><%=num.RecCompany %></span></font><br>
+                <font size="2"><b>Контактное лицо: </b><span id="RecPerson"><%=num.RecPerson %></span></font><br>
+                <font size="2"><b>Телефон: </b><span id="RecPhone"><%=num.RecPhone %></span></font><br>
+                <font size="2"><b>Доп. информация: </b><span id="RecAddInfo"><%=num.RecAddInfo %></span></font></div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table cellpadding="1"style="width: 100%;">
+                <tbody>
+                <tr><td style="width: 30%;"><div><font size="1">Плательщик: </font><font size="2"><span id="Customer"><%=num.Customer %></span></font></div></td></tr>
+                <tr><td><div><font size="1">Срочность доставки: </font><font size="2"><b><span id="DelType"><%=num.DelType %></span></b></font></div></td></tr>
+                <tr><td><div><font size="1">Оплата: </font><font size="2"><span id="PayType"><%=num.PayType %></span></font></div></td></tr>
+                <tr><td><div><font size="1">Стоимость доставки: </font><font size="2"><span id="Price"><%=num.Price %></span></font></div></td></tr>
+
+                <tr><td><div><font size="1">Страховая стоимость: </font><font size="2"><span id="InsurValue"><%=num.InsurValue %> руб.</span></font></div></td></tr>
+                <tr><td><div><font size="1">Наложенный платеж: </font><font size="2"><span id="COD"><%=num.COD %> руб.</span></font></div></td></tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+            <div class = "container">
+                <br/>
+                Грузы:
+                <table font size="1" class="podtable" border="1" cellpadding="1" cellspacing="0" style="width: 100%;">
+
+                    <tr>
+                        <td><font size="2">п.п.</font></td>
+                        <td><font size="2">Вес (кг)</font></td>
+                        <td><font size="2">Длина (см)</font></td>
+                        <td><font size="2">Ширина (см)</font></td>
+                        <td><font size="2">Высота (см)</font></td>
+                    </tr>
+
+                    <% var counter = 0; %>
+                    <% num.Cargo.forEach(function(tab) { %>
+                    <tr>
+                        <td align="center"><font size="2"><%=counter = counter+1 %></font></td>
+                        <td align="center"><font size="2"><%=tab.m %></font></td>
+                        <td align="center"><font size="2"><%=tab.h %></font></td>
+                        <td align="center"><font size="2"><%=tab.l %></font></td>
+                        <td align="center"><font size="2"><%=tab.w %></font></td>
+                    </tr>
+
+                    <%});%>
+                </table>
+                <table cellpadding="1"style="width: 100%;">
+                    <tbody>
+                    <tr>
+                        <td style="width: 30%;"><div><font size="1">Итого мест: </font><font size="2"><b><span id="Totalq"><%=num.Totalq %></span></b></font></div></td>
+                        <td><div><font size="1">Общий вес: </font><font size="2"><b><span id="Totalm"><%=num.Totalm %></span></b></font></div></td>
+                        <td><div><font size="1">Объемный вес: </font><font size="2"><b><span id="Totalv"><%=num.Totalv %></span></b></font></div></td></tr>
+                    </tbody>
+                </table>
+                <div>
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2">
+            <table class="podtable" border="1" cellpadding="1" cellspacing="0" style="width: 100%;">
+                <tbody>
+                <tr>
+                    <td style="text-align: center;"><div><font size="1">&nbsp;</br> Дата отправки</font></div></td>
+                    <td style="text-align: center;"><div><font size="1">&nbsp;</br> Время</font></div></td>
+                    <td style="text-align: center;"><div><font size="1">&nbsp;</br> Отправитель (Ф.И.О.)</font></div></td>
+                    <td style="text-align: center;"><div><font size="1">&nbsp;</br> Подпись</font></div></td>
+                    <td style="text-align: center;"><div><font size="1">&nbsp;</br> Курьер (Ф.И.О.)</font></div></td>
+                    <td style="text-align: center;"><div><font size="1">&nbsp;</br> Подпись</font></div></td>
+                </tr>
+                <tr>
+                    <td style="width: 12%; text-align: center;"><div><font size="1">&nbsp;</br> Дата получения</font></div> </td>
+                    <td style="width: 12%; text-align: center;"><div><font size="1">&nbsp;</br> Время</font></div></td>
+                    <td style="width: 20%; text-align: center;"><div><font size="1">&nbsp;</br> Получатель (Ф.И.О.)</font></div></td>
+                    <td style="width: 18%; text-align: center;"><div><font size="1">&nbsp;</br> Подпись</font></div></td>
+                    <td style="width: 20%; text-align: center;"><div><font size="1">&nbsp;</br> Курьер (Ф.И.О.)</font></div></td>
+                    <td style="width: 18%; text-align: center;"><div><font size="1">&nbsp;</br> Подпись</font></div></td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</div>
+<script type="text/javascript">
+        window.print();
+</script>
+</body>
+</html>

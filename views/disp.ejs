@@ -105,39 +105,38 @@
                 <div class="panel-body">
 
                     <div  id="cargo">
-                        <% num.Cargo.forEach(function (carg) { %>
-                        <div class="form-group row" id = "div0">
-                            <div class="col-sm-1">#</div>
-                            <div class="col-sm-1">Вес (кг):</div>
-                            <div class="col-sm-2"><%=carg.m %></div>
-                            <div class="col-sm-1">Размер (см):</div>
-                            <div class="col-sm-4">
 
-                                <div class="row">
-                                    <div class="col-sm-3"><%=carg.h %></div>
-                                    <div class="col-sm-1">Х</div>
-                                    <div class="col-sm-3"><%=carg.l %></div>
-                                    <div class="col-sm-1">Х</div>
-                                    <div class="col-sm-3"><%=carg.w %></div>
+                        <table class="table table-bordered">
+                            <tr>
+                                <td>п.п.</td>
+                                <td>Вес (кг)</td>
+                                <td>Длина (см)</td>
+                                <td>Ширина (см)</td>
+                                <td>Высота (см)</td>
+                                <td>Объем (м.куб.)</td>
+                            </tr>
+                            <% var counter = 0; %>
+                            <% num.Cargo.forEach(function (carg) { %>
+                            <tr>
+                                <td><%=counter = counter+1 %></td>
+                                <td><%=carg.m %></td>
+                                <td><%=carg.h %></td>
+                                <td><%=carg.l %></td>
+                                <td><%=carg.w %></td>
+                                <td><%=carg.h*carg.l*carg.w/5000 %></td>
+                            </tr>
 
-                                </div>
-
-                            </div>
-                            <div class="col-sm-1">Объем (м.куб.):</div>
-
-                            <div class="col-sm-2"><%=carg.h*carg.l*carg.w/5000 %></div>
                             <%   }) %>
+                        </table>
+
+
                         </div>
                     </div>
-                    <div id ="add-cargo-button" class = "row">
-
-                        <div class="col-sm-1">Количество мест:</div>
-                        <div class="col-sm-2"><%=num.Totalq %></div>
-                        <div class="col-sm-1">Итого вес (кг):</div>
-                        <div class="col-sm-2"><%=num.Totalm %></div>
-                        <div class="col-sm-1">Объемный вес (кг):</div>
-                        <div class="col-sm-2"><%=num.Totalv %></div>
-
+                    <table class="table">
+                        <td>Количество мест: <%=num.Totalq %></td>
+                        <td>Итого вес (кг): <%=num.Totalm %></td>
+                        <td>Объемный вес (кг): <%=num.Totalv %></td>
+                    </table>
                     </div>
 
                 </div>
@@ -164,25 +163,30 @@
                     <div class="form-group">
                         <label class="control-label col-sm-3" for="sel1">Страховая стоимость:</label>
                         <div class="col-sm-9 paddingbottomclass">
-                            <input class="form-control" name = "InsurValue" id="InsurValue" type="number">
+                            <%=num.InsurValue %>
 
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-3" for="sel1">Наложенный платеж:</label>
                         <div class="col-sm-9 paddingbottomclass">
-                            <input class="form-control" name = "COD" id="COD" type="number">
+                            <%=num.COD %>
 
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <form method="Get" action="/pdfdisp/<%=disp %>">
+                            <button class="btn">Печать</button>
+                        </form>
                     </div>
 
                 </div>
             </div>
 
         </div>
-    </div>
 
-</div>
+
+
 
 
 <%- include("parts/footer.ejs") %>

@@ -129,6 +129,7 @@ function removecargo(name) {
 //-----------------------------------------------------------
 function finddispSuccess (data){
     var arr = JSON.parse(data);
+    $("#disptable").html("");
     $("#disptable").append(" <table class=\"table table-bordered table-hover\" >\n" +
         "        <thead class=\"thead-light\">\n" +
         "        <tr>\n" +
@@ -189,7 +190,6 @@ $('#findDisp').bind('click',function () {
 
 $(document).on('dblclick', '#disp', function() {
 
-    alert($(this).attr('name'));
     window.open('/disp/'+$(this).attr('name'));
 });
 

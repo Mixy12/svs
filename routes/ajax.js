@@ -31,14 +31,26 @@ router.post("/tracknum", urlencodedParser, function (request, response) {
 
 
 router.post("/calculate", urlencodedParser, function (request, response) {
+  if(request.session.hash){
+    var hash = request.session.hash;
+  } else {
+    var hash = "";
+  }
+
+
+  if(request.session.userId){
+    var userId = request.session.userId;
+  } else {
+    var userId = "";
+  }
   var params = {
     "SendCity": request.body.sendCity,
     "RecCity": request.body.recdCity,
     "Wight": request.body.weight.toString(),
     "Volume": request.body.volume.toString(),
     "UserIP": request.connection.remoteAddress.toString(),
-    "Hash":"",
-    "UserId":""
+    "Hash":hash,
+    "UserId":userId
 
     };
   var args = {CalcXDTO:params};
@@ -59,34 +71,6 @@ console.log(args);
 
 });
 
-router.post("/calculate", urlencodedParser, function (request, response) {
-  var params = {
-    "SendCity": request.body.sendCity,
-    "RecCity": request.body.recdCity,
-    "Wight": request.body.weight.toString(),
-    "Volume": request.body.volume.toString(),
-    "UserIP": request.connection.remoteAddress.toString(),
-    "Hash":"",
-    "UserId":""
-
-  };
-  var args = {CalcXDTO:params};
-  console.log(args);
-
-  soap.createClient(url, function(err, client) {
-    client.Calculation(args, function(err, result) {
-      var data = result.return;
-      console.log(data);
-      var j = JSON.parse(data);
-      //console.log(p1);
-      //console.log(obj);
-      //console.log(p1);
-      response.send(j.data);
-    });
-  });
-
-
-});
 
 //--------------заполнить из справочника----
 router.post("/reqdel", urlencodedParser, function (request, response) {

@@ -29,7 +29,7 @@ router.get('/:num', function(req, res, next) {
             var j = JSON.parse(data);
             console.log(j);
             //var k = JSON.parse(j.val);
-            res.render('disp', { num: j});
+            res.render('disp', { num: j,disp:req.params.num.toString()});
         });
     });
 
