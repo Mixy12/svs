@@ -136,3 +136,68 @@ router.post("/disp", urlencodedParser, function (request, response) {
 
 
 });
+//-----------------Добавить шаблон-----------------
+router.post('/addTemp', function(req, res, next) {
+
+  var params = {
+    UserIP: req.connection.remoteAddress.toString(),
+    Hash: req.session.hash,
+    UserId: req.session.userId,
+    name:req.body.tempName,
+    Address:req.body.tempAdress,
+    City:req.body.tempCity,
+    AddInfo:req.body.tempAddInfo,
+    Company :req.body.tempCompany,
+    Person:req.body.tempPerson,
+    Phone:req.body.tempPhone,
+  };
+
+  var paramsOne = JSON.stringify(params);
+
+  var args = {Param:paramsOne};
+
+  soap.createClient(url, function(err, client) {
+    if (err){console.log("first err is " + err)}
+    client.SrAddString(args, function(err, result) {
+      if (err){console.log("second err is " + err)
+        res.render('templates',{
+          logget: req.session.logged})
+      }else {
+        var data = result.return;
+        res.send(data);
+        //-------------------------------------------
+      }
+    });
+  });
+
+});
+//--------------------Удалить шаблон---------------------
+router.post('/delTemp', function(req, res, next) {
+
+  var params = {
+    UserIP: req.connection.remoteAddress.toString(),
+    Hash: req.session.hash,
+    UserId: req.session.userId,
+    name:req.body.name
+  };
+
+  var paramsOne = JSON.stringify(params);
+
+  var args = {Param:paramsOne};
+
+  soap.createClient(url, function(err, client) {
+    if (err){console.log("first err is " + err)}
+    client.SrDelString(args, function(err, result) {
+      if (err){console.log("second err is " + err)
+        res.render('templates',{
+          logget: req.session.logged})
+      }else {
+        var data = result.return;
+        res.send(data);
+        //-------------------------------------------
+      }
+    });
+
+  });
+
+});

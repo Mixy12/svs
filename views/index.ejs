@@ -15,7 +15,7 @@
       <h1>Быстро и надежно</h1>
       <p>Быстрая доставка любых грузов.
         Индивидуальный подход к каждому клиенту.</p>
-      <div class="action-box"><a href="#" class="btn btn-transparent">Оставить заявку</a><a href="/calc" class="btn btn-default">Рассчитать тариф</a></div>
+      <div class="action-box"><a href="/requestdelivery" class="btn btn-default">Вызвать курьера</a><a href="/calc" class="btn btn-transparent">Рассчитать тариф</a><a href="/track" class="btn btn-transparent">Отследить по номеру</a></div>
     </div>
   </div>
 </section>
@@ -28,7 +28,7 @@
           <img src="/public/img/feature-01.jpg" class="img-responsive">
           <h2>Авиаперевозки</h2>
           <p>Авиаперевозки по России и миру существляются пассажирскими и грузовыми авиарейсами. Срок доставки от 1 дня.</p>
-          <a href="#">Подробнее...</a>
+          <a href="/avia">Подробнее...</a>
         </div>
       </div>
       <div class="col-md-4 col-sm-4">
@@ -36,7 +36,7 @@
           <img src="/public/img/feature-02.jpg"  class="img-responsive">
           <h2>Терморежим</h2>
           <p>СВС-Логистик осуществляет доставку различных грузов с соблюдением требуемого температурного режима. </p>
-          <a href="#">Подробнее...</a>
+          <a href="/term">Подробнее...</a>
         </div>
       </div>
       <div class="col-md-4 col-sm-4">
@@ -44,7 +44,7 @@
           <img src="/public/img/feature-03.jpg" class="img-responsive">
           <h2>Сборные грузы</h2>
           <p>Доставка Авто и ЖД транспортом Ваших грузов в любых направлениях по выгодным ценам за короткий срок.</p>
-          <a href="#">Подробнее...</a>
+          <a href="cargo">Подробнее...</a>
         </div>
       </div>
     </div>
@@ -214,28 +214,28 @@
           <h3 class="text-center">Задайте Ваш вопрос</h3>
           <div class="form-group">
             <div class="col-md-12">
-              <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Имя">
+              <input type="text" class="form-control" id="reName" placeholder="Имя">
 
             </div>
           </div>
           <div class="form-group">
             <div class="col-md-12">
-              <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Email">
+              <input type="text" class="form-control" id="reEmail" placeholder="Email">
             </div>
           </div>
           <div class="form-group">
             <div class="col-md-12">
-              <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Номер телефона">
+              <input type="text" class="form-control" id="rePhone" placeholder="Номер телефона">
             </div>
           </div>
           <div class="form-group">
             <div class="col-md-12">
-              <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Организация">
+              <input type="text" class="form-control" id="reCompany" placeholder="Организация">
             </div>
           </div>
           <div class="form-group">
             <div class="col-md-12">
-              <textarea rows="3" class="form-control" id="exampleInputPassword1" placeholder="Ваш вопрос"></textarea>
+              <textarea rows="3" class="form-control" id="reQuest" placeholder="Ваш вопрос"></textarea>
             </div>
           </div>
           <!-- <div class="form-group">
@@ -261,9 +261,14 @@
 
          <div class="form-group">
            <div class="col-md-12">
-             <button type="button" class="btn btn-lg btn-success btn-block">Отправить</button>
+             <button type="button" id="reSend" class="btn btn-lg btn-success btn-block">Отправить</button>
            </div>
          </div>
+          <div class="form-group">
+            <div class="col-md-12">
+              <h4 id="sended"></h4>
+            </div>
+          </div>
        </form>
      </div>
    </div>

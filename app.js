@@ -45,6 +45,11 @@ app.use('/disp', require('./routes/disp'));
 app.use('/requestdelivery', require('./routes/requestdelivery'));
 app.use('/mydisp', require('./routes/mydisp'));
 app.use('/pdfdisp', require('./routes/pdfdisp'));
+app.use('/avia', require('./routes/avia'));
+app.use('/cargo', require('./routes/cargo'));
+app.use('/term', require('./routes/term'));
+app.use('/resend', require('./routes/resend'));
+app.use('/templates', require('./routes/templates'));
 
 
 // catch 404 and forward to error handler

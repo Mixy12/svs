@@ -46,9 +46,14 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="row">
-                        <div class="col-sm-6">Данные отправителя</div> <div class="col-sm-6"><a href="#send" id="asprav" class="btn btn-default" data-toggle="collapse">Заполнить из справочника</a> </div></div>
+                        <div class="col-sm-6">Данные отправителя</div>
+                        <% if(logget){ %>
+                        <div class="col-sm-6"><a href="#send" id="asprav" class="btn btn-default" data-toggle="collapse">Заполнить из справочника</a> </div>
+                    <%}%>
+                    </div>
 
 
+                    <% if(logget){ %>
                     <div class="row">
 
 
@@ -80,6 +85,7 @@
                             </table>
                         </div>
                     </div>
+                    <%}%>
                 </div>
 
                 <div class="panel-body">
@@ -127,9 +133,14 @@
                 <div class="panel-heading">
 
                     <div class="row">
-                        <div class="col-sm-6">Данные получателя</div> <div class="col-sm-6"><a href="#rec" id="butsprav" class="btn btn-default" data-toggle="collapse">Заполнить из справочника</a>
+                        <div class="col-sm-6">Данные получателя</div>
+
+                        <% if(logget){ %>
+                        <div class="col-sm-6"><a href="#rec" id="butsprav" class="btn btn-default" data-toggle="collapse">Заполнить из справочника</a>
                         </div>
+                        <%}%>
                     </div>
+                     <% if(logget){ %>
                     <div class="row">
                         <div id="rec" class="collapse">
                             <table class = "table dispatch table-striped table-hover" >
@@ -159,6 +170,7 @@
                         </div>
 
                     </div>
+                    <%}%>
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
@@ -280,7 +292,9 @@
                             <select class="form-control" name = "PayType" id="PayType">
                                 <option value="ОплатаНаличнымиПриОтправлении">Наличными при отправлении</option>
                                 <option value="ОплатаНаличнымиПриПолучении">Наличными при получении</option>
+                                <% if(logget){ %>
                                 <option selected value="БезналичнаяОплата">Безналичная оплата по договору</option>
+                                <%}%>
                             </select>
                         </div>
                     </div>
@@ -335,7 +349,7 @@
 
                         </div>
                     </div>
-                    <div id ="result-adddisp"><button id="calcbtn" type="button" class="btn btn-default"">Расчет стоимости доставки</button>     <button id="newDispSend" type="button" class="btn btn-default" >Завершить оформление накладной</button></div>
+                    <div id ="result-adddisp"><button id="calcbtn" type="button" class="btn btn-default">Расчет стоимости доставки</button>     <button id="newDispSend" type="button" class="btn btn-default" >Завершить оформление накладной</button></div>
                     <div class="container">
                         <p id="result"></p>
                     </div>

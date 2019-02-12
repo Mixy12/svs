@@ -39,27 +39,49 @@
         </ul>
     </div>
 </div>
-<br><br>
-<div class="container">
-        <div class="input-group">
-            <input id="trackInput" type="text" class="form-control" placeholder="Поиск">
-            <div class="input-group-btn">
-                <button id="trackbutton" class="btn btn-default" type="button">
-                    <i class="glyphicon glyphicon-search"></i>
-                </button>
-            </div>
-        </div>
-
-</div>
 <br>
-<div class="container">
-<table class="table table-bordered table-content" >
 
-    <tbody id="result">
-    </tbody>
+<div class="container-fluid">
+<table class="table table-bordered">
+    <tr>
+        <th>Наименование</th>
+        <th>Город</th>
+        <th>Адрес</th>
+        <th>Телефон</th>
+        <th>Контактное лицо</th>
+        <th>Компания</th>
+        <th>Доп. информация</th>
+        <th></th>
+    </tr>
+
+    <% table.forEach(function(tab) { %>
+    <tr>
+        <td name="ref"><%=tab.ref %></td>
+        <td name="city"><%=tab.city %></td>
+        <td name="address"><%=tab.address %></td>
+        <td name="phone" ><%=tab.phone %></td>
+        <td name="person" ><%=tab.person %></td>
+        <td name="company" ><%=tab.company %></td>
+        <td name="addinfo" ><%=tab.addinfo %></td>
+        <td><button class="delete">удалить</button></td>
+    </tr>
+    <% }); %>
+    <tr>
+        <td><input id="tempName" placeholder="Наименование" type="text"></td>
+        <td><input id="tempCity" placeholder="Город" type="text"></td>
+        <td><input id="tempAdress" placeholder="Адрес" type="text"></td>
+        <td><input id="tempPhone" placeholder="Телефон" type="text"></td>
+        <td><input id="tempPerson" placeholder="Контактное лицо" type="text"></td>
+        <td><input id="tempCompany" placeholder="Компания" type="text"></td>
+        <td><input id="tempAddInfo" placeholder="Доп. информация" type="text"></td>
+        <td><button id="tempAdd">Добавить</button></td>
+    </tr>
 </table>
+</div>
 
-
+<script src="/public/js/citys.js" type="text/javascript"></script>
+<div class="container">
+    <p id="result"></p>
 </div>
 
 <%- include("parts/footer.ejs") %>

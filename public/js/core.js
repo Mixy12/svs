@@ -15,6 +15,9 @@
 
         arr.forEach(function(item, i, arr) {
             var a = item.num;
+            $(".table-content").html('');
+            $(".table-content").append("<table class='table table-bordered'><thead><tr><th>Дата</th><th>Статус</th><th>Комментарий</th></tr> </thead><tbody id='result'></tbody></table>");
+
             $("#result").append("<tr>   <td>"+item.Date+"</td>   <td>"+item.Status+"</td>   <td>"+item.Comment+"</td> </tr>");
         });
        // $("#result").append("</table>");
@@ -284,7 +287,7 @@ $("#calcbtn").bind('click',function() {
 
 function newdispfuncSuccess (data){alert(data)}
 
-function newdispfuncbefore (){alert('ждёмс..')}
+function newdispfuncbefore (){}
 
 function newdispfuncerror (){alert( "Ошибка :(");}
 $(document).ready(function () {
@@ -354,6 +357,177 @@ $(document).ready(function () {
             beforeSend: newdispfuncbefore,
             error: newdispfuncerror,
             success: newdispfuncSuccess
+        })
+
+
+    });
+});
+
+//----------------------Обратная связь-----------
+function refuncSuccess (data){$("#sended").text("Отправлено")}
+
+function refuncbefore (){}
+
+function refuncerror (){alert( "Ошибка :(");}
+
+$("#reSend").bind('click',function() {
+    let reName = $("#reName").val();
+    let reEmail = $("#reEmail").val();
+    let rePhone = $("#rePhone").val();
+    let reCompany = $("#reCompany").val();
+    let reQuest = $("#reQuest").val();
+    $.ajax({
+        url: "/resend",
+        type: "POST",
+        data: ({
+            reName:reName,
+            reEmail:reEmail,
+            rePhone:rePhone,
+            reCompany:reCompany,
+            reQuest:reQuest
+        }),
+        dataType: "html",
+        beforeSend: refuncbefore,
+        error: refuncerror,
+        success: refuncSuccess
+    })
+
+
+});
+//-------------------Добавлени шаблона------------------
+function templatefuncSuccess (){location.reload();
+}
+
+function templatefuncbefore (){}
+
+function templatefuncerror (){alert( "Ошибка :(");}
+
+$("#tempAdd").bind('click',function() {
+    let tempName = $("#tempName").val();
+    let tempCity = $("#tempCity").val();
+    let tempAdress = $("#tempAdress").val();
+    let tempPhone = $("#tempPhone").val();
+    let tempPerson = $("#tempPerson").val();
+    let tempCompany = $("#tempCompany").val();
+    let tempAddInfo = $("#tempAddInfo").val();
+    $.ajax({
+        url: "/ajax/addTemp",
+        type: "POST",
+        data: ({
+            tempName:tempName,
+            tempCity:tempCity,
+            tempAdress:tempAdress,
+            tempPhone:tempPhone,
+            tempPerson:tempPerson,
+            tempCompany:tempCompany,
+            tempAddInfo:tempAddInfo
+
+        }),
+        dataType: "html",
+        beforeSend: templatefuncbefore,
+        error: templatefuncerror,
+        success: templatefuncSuccess
+    })
+
+
+});
+//-----------------------Удаление шаблона------------
+function deltemplatefuncSuccess (){location.reload();
+}
+
+function deltemplatefuncbefore (){}
+
+function deltemplatefuncerror (){alert( "Ошибка :(");}
+
+$(".delete").bind('click',function() {
+    let name = $(this).parent().parent().find('[name="ref"]').text();
+    $.ajax({
+        url: "/ajax/delTemp",
+        type: "POST",
+        data: ({
+            name:name
+        }),
+        dataType: "html",
+        beforeSend: deltemplatefuncbefore,
+        error: deltemplatefuncerror,
+        success: deltemplatefuncSuccess
+    })
+
+
+});
+//---------------------Заказать курьера---------------
+function deliveryfuncSuccess (data){alert(data)}
+
+function deliveryfuncbefore (){}
+
+function deliveryfuncerror (){alert( "Ошибка :(");}
+$(document).ready(function () {
+    $("#newDispSend").bind('click',function() {
+        let SendCity = $('#SendCity').val();
+        let SendAdress = $('#SendAdress').val();
+        let SendPhone = $('#SendPhone').val();
+        let SendPerson = $('#SendPerson').val();
+        let SendCompany = $('#SendCompany').val();
+        let SendAddInfo = $('#SendAddInfo').val();
+        let RecCity = $('#RecCity').val();
+        let RecAdress = $('#RecAdress').val();
+        let RecPhone = $('#RecPhone').val();
+        let RecPerson = $('#RecPerson').val();
+        let RecCompany = $('#RecCompany').val();
+        let RecAddInfo = $('#RecAddInfo').val();
+        let DelType = $('#DelType').val();
+        let PayType = $('#PayType').val();
+        let InsurValue = $('#InsurValue').val();
+        let COD = $('#COD').val();
+
+        let curDate = $('#curDate').val();
+        let curTime = $('#curTime').val();
+        let Uved = $('#Uved').is(':checked');
+        let Scan = $('#Scan').is(':checked');
+        let Opasn = $('#Opasn').is(':checked');
+        let Podp = $('#Podp').is(':checked');
+
+        var carg = [];
+        $('div[id^="div"]').each(function () {
+            let m = $(this).find('[id^="m"]').val();
+            let l = $(this).find('[id^="l"]').val();
+            let w = $(this).find('[id^="w"]').val();
+            let h = $(this).find('[id^="h"]').val();
+            carg.push([m,l,w,h]);
+        });
+        carg = JSON.stringify(carg);
+        $.ajax({
+            url: "/delivery",
+            type: "POST",
+            data: ({
+                SendCity:SendCity,
+                SendAdress:SendAdress,
+                SendPhone:SendPhone,
+                SendPerson:SendPerson,
+                SendCompany:SendCompany,
+                SendAddInfo:SendAddInfo,
+                RecCity:RecCity,
+                RecAdress:RecAdress,
+                RecPhone:RecPhone,
+                RecPerson:RecPerson,
+                RecCompany:RecCompany,
+                RecAddInfo:RecAddInfo,
+                DelType:DelType,
+                PayType:PayType,
+                InsurValue:InsurValue,
+                COD:COD,
+                carg:carg,
+                curDate:curDate,
+                curTime:curTime,
+                Uved:Uved,
+                Scan:Scan,
+                Opasn:Opasn,
+                Podp:Podp
+            }),
+            dataType: "html",
+            beforeSend: deliveryfuncbefore,
+            error: deliveryfuncerror,
+            success: deliveryfuncSuccess
         })
 
 

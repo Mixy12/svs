@@ -48,7 +48,7 @@ router.get('/', function(req, res, next) {
 
         });
     }else{
-        res.render('login',{
+        res.render('requestdelivery',{
             logget: req.session.logged
         });
     }
@@ -56,39 +56,69 @@ router.get('/', function(req, res, next) {
 //------------------------------------------------------------
 
 router.post("/", urlencodedParser, function (request, response) {
+    if(req.session.logged == true) {
+        var params = {
+            "SendCity": request.body.SendCity,
+            "SendAdress": request.body.SendAdress,
+            "SendPhone": request.body.SendPhone,
+            "SendPerson": request.body.SendPerson,
+            "SendCompany": request.body.SendCompany,
+            "SendAddInfo": request.body.SendAddInfo,
+            "RecCity": request.body.RecCity,
+            "RecAdress": request.body.RecAdress,
+            "RecPhone": request.body.RecPhone,
+            "RecPerson": request.body.RecPerson,
+            "RecCompany": request.body.RecCompany,
+            "RecAddInfo": request.body.RecAddInfo,
+            "PayType": request.body.PayType,
+            "DelType": request.body.DelType,
+            "InsurValue": request.body.InsurValue,
+            "COD": request.body.COD,
+            "cargo": request.body.carg,
 
-    var params = {
-        "SendCity": request.body.SendCity,
-        "SendAdress": request.body.SendAdress,
-        "SendPhone": request.body.SendPhone,
-        "SendPerson": request.body.SendPerson,
-        "SendCompany": request.body.SendCompany,
-        "SendAddInfo": request.body.SendAddInfo,
-        "RecCity": request.body.RecCity,
-        "RecAdress": request.body.RecAdress,
-        "RecPhone": request.body.RecPhone,
-        "RecPerson": request.body.RecPerson,
-        "RecCompany": request.body.RecCompany,
-        "RecAddInfo": request.body.RecAddInfo,
-        "PayType": request.body.PayType,
-        "DelType": request.body.DelType,
-        "InsurValue": request.body.InsurValue,
-        "COD": request.body.COD,
-        "cargo": request.body.carg,
+            "Date": request.body.curDate,
+            "Time": request.body.curTime,
+            "Uved": request.body.Uved,
+            "Scan": request.body.Scan,
+            "Opasn": request.body.Opasn,
+            "Podp": request.body.Podp,
+            "UserId": request.session.userId,
+            "Hash": request.session.hash,
+            "UserIP": request.connection.remoteAddress
 
-        "Date": request.body.curDate,
-        "Time": request.body.curTime,
-        "Uved": request.body.Uved,
-        "Scan": request.body.Scan,
-        "Opasn": request.body.Opasn,
-        "Podp": request.body.Podp,
-        "UserId": request.session.userId,
-        "Hash": request.session.hash,
-        "UserIP": request.connection.remoteAddress
+        };
+    }else{
+        var params = {
+            "SendCity": request.body.SendCity,
+            "SendAdress": request.body.SendAdress,
+            "SendPhone": request.body.SendPhone,
+            "SendPerson": request.body.SendPerson,
+            "SendCompany": request.body.SendCompany,
+            "SendAddInfo": request.body.SendAddInfo,
+            "RecCity": request.body.RecCity,
+            "RecAdress": request.body.RecAdress,
+            "RecPhone": request.body.RecPhone,
+            "RecPerson": request.body.RecPerson,
+            "RecCompany": request.body.RecCompany,
+            "RecAddInfo": request.body.RecAddInfo,
+            "PayType": request.body.PayType,
+            "DelType": request.body.DelType,
+            "InsurValue": request.body.InsurValue,
+            "COD": request.body.COD,
+            "cargo": request.body.carg,
 
-    };
-    console.log(params);
-    console.log(request.body.carg);
+            "Date": request.body.curDate,
+            "Time": request.body.curTime,
+            "Uved": request.body.Uved,
+            "Scan": request.body.Scan,
+            "Opasn": request.body.Opasn,
+            "Podp": request.body.Podp,
+            "UserId": '100000171',
+            "Hash": '',
+            "UserIP": request.connection.remoteAddress
+
+        };
+    }
     var paramsOne = JSON.stringify(params);
     var args = {Param:paramsOne};
 
