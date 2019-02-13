@@ -6,7 +6,7 @@ const url = 'http://82.200.49.118/cs/maws.1cws?wsdl';
 const urlencodedParser = bodyParser.urlencoded({extended: false});
 
 router.post("/tracknum", urlencodedParser, function (request, response) {
-  //console.log('aaaa');
+
   console.log(request.body);
   //if(!request.body) return response.sendStatus(400);
   //console.log(request.body);

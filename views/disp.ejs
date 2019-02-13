@@ -174,12 +174,45 @@
 
                         </div>
                     </div>
+                    <div id="geninfo" class="col-sm-12 col-xs-12">
+                        <div class="panel panel-default">
+                        <div class="panel-heading">История</div>
+                        <div class="panel-body">
+
+                            <div>
+
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>Дата</th>
+                                        <th>Статус</th>
+                                        <th>Комментарий</th>
+
+                                    </tr>
+                                    <% var counter = 0; %>
+                                    <% num.History.table.forEach(function (tab) { %>
+                                    <tr>
+                                        <td><%=tab.Date %></td>
+                                        <td><%=tab.Status %></td>
+                                        <td><%=tab.Comment %></td>
+
+                                    </tr>
+
+                                    <%   }); %>
+                                </table>
+                            </div>
+                        </div></div>
+
+
                     <div class="form-group">
                         <form method="Get" action="/pdfdisp/<%=disp %>">
                             <button class="btn">Печать</button>
                         </form>
                     </div>
-
+                    <div class="form-group">
+                        <form method="Get" action="/requestdelivery/<%=disp %>">
+                            <button class="btn">Копировать</button>
+                        </form>
+                    </div>
                 </div>
             </div>
 

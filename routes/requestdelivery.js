@@ -54,9 +54,38 @@ router.get('/', function(req, res, next) {
     }
         });
 //------------------------------------------------------------
+router.get('/:num', function(req, res, next) {
 
+    let params = {
+        UserIP: req.connection.remoteAddress.toString(),
+        Hash: req.session.hash,
+        UserId: req.session.userId,
+        num: req.params.num.toString()
+    };
+    let paramsOne = JSON.stringify(params);
+    //.log("ParamsOne is"+paramsOne);
+    let args = {param1:paramsOne};
+    //console.log(args);
+
+    soap.createClient(url, function(err, client) {
+        if (err){console.log("first err is " + err)};
+        client.test1(args, function(err, result) {
+            if (err){console.log("second err is " + err)};
+
+            //console.log("result is " + result);
+            var data = result.return;
+            //console.log("data is " + data);
+            var j = JSON.parse(data);
+            console.log(j);
+            //var k = JSON.parse(j.val);
+            res.render('requestdelivery', { num: j,logget: req.session.logged});
+        });
+    });
+
+});
+//------------------------------------------------------------
 router.post("/", urlencodedParser, function (request, response) {
-    if(req.session.logged == true) {
+    if(request.session.logged == true) {
         var params = {
             "SendCity": request.body.SendCity,
             "SendAdress": request.body.SendAdress,
@@ -119,11 +148,15 @@ router.post("/", urlencodedParser, function (request, response) {
 
         };
     }
+    console.log("params");
+    console.log(params);
     var paramsOne = JSON.stringify(params);
     var args = {Param:paramsOne};
 
     soap.createClient(url, function(err, client) {
+        if(err){console.log(err)}
         client.AddDispString(args, function(err, result) {
+            if(err){console.log(err)}
             var data = result.return;
             console.log(data);
             var j = JSON.parse(data);

@@ -5,14 +5,21 @@ const soap = require('soap');
 const url = 'http://82.200.49.118/cs/maws.1cws?wsdl';
 
 router.get('/:num', function(req, res, next) {
-
-    var params = {
-        UserIP: req.connection.remoteAddress.toString(),
-        Hash: req.session.hash,
-        UserId: req.session.userId,
-        num: req.params.num.toString()
-    };
-
+    if(req.session.logged == true) {
+        var params = {
+            UserIP: req.connection.remoteAddress.toString(),
+            Hash: req.session.hash,
+            UserId: req.session.userId,
+            num: req.params.num.toString()
+        };
+    }else{
+        var params = {
+            "UserId": '100000171',
+            "Hash": 'ewfffffffffwe',
+            "UserIP": req.connection.remoteAddress,
+            num: req.params.num.toString()
+        };
+    }
     var paramsOne = JSON.stringify(params);
     //.log("ParamsOne is"+paramsOne);
 

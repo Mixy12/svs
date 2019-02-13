@@ -41,7 +41,7 @@ router.post("/", urlencodedParser, function (request, response) {
         sess.hash = j.hash;
         sess.alias = j.alias;
         console.log(sess);
-        response.render('cabinet',{
+        response.render('index',{
           logget: request.session.logged
         });}
       else{

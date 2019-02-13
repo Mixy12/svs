@@ -264,8 +264,7 @@ $("#calcbtn").bind('click',function() {
     let recdCity = $('#RecCity').val();
     let weight = $('#totalm').val();
     let volume = $('#totalv').val()/200;
-    alert(sendCity);
-    alert(weight);
+
     $.ajax({
         url: "/ajax/calculate",
         type: "POST",
@@ -285,7 +284,14 @@ $("#calcbtn").bind('click',function() {
 });
 //-----------------Отправка накладной---------------------------------
 
-function newdispfuncSuccess (data){alert(data)}
+function newdispfuncSuccess (data){
+    $("#result-adddisp").text("");
+    $("#result-adddisp").append('<p>Номер накладной<h3>'+data+'</h3></p><form target="_blank" method="Get" action="/pdfdisp/'+data+'"><button class="btn">Печать</button>   </form>');
+}
+
+
+
+
 
 function newdispfuncbefore (){}
 
@@ -456,6 +462,7 @@ $(".delete").bind('click',function() {
 
 });
 //---------------------Заказать курьера---------------
+/*
 function deliveryfuncSuccess (data){alert(data)}
 
 function deliveryfuncbefore (){}
@@ -497,7 +504,7 @@ $(document).ready(function () {
         });
         carg = JSON.stringify(carg);
         $.ajax({
-            url: "/delivery",
+            url: "/requestdelivery",
             type: "POST",
             data: ({
                 SendCity:SendCity,
@@ -533,3 +540,4 @@ $(document).ready(function () {
 
     });
 });
+*/
