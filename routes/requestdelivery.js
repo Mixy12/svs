@@ -176,7 +176,8 @@ router.post("/", urlencodedParser, function (request, response) {
             server.send({
                 text:    'Номер накладной: '+j.num+'\r'+'Город отправителя: '+params.SendCity+'\r'+'Адрес отправителя: '+params.SendAdress,
                 from:    "<info-svs-logistic@mail.ru>",
-                to:      "<sales@svs-logistik.ru>",
+                to:      "<sales@svs-logistik.ru>, <adm@svs-logistik.ru>, <svs-logistiknsk@mail.ru>",
+
                 subject: 'Новая накладная'
             }, function(err, message) { console.log(err || message); });
         });
