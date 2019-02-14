@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const email = require('emailjs');
 const bodyParser = require("body-parser");
 const soap = require('soap');
 const url = 'http://82.200.49.118/cs/maws.1cws?wsdl';
@@ -85,6 +86,14 @@ router.get('/:num', function(req, res, next) {
 });
 //------------------------------------------------------------
 router.post("/", urlencodedParser, function (request, response) {
+
+    const server 	= email.server.connect({
+        user:    "info-svs-logistic@mail.ru",
+        password:"svs-logisticpass",
+        host:    "smtp.mail.ru",
+        ssl:     true
+    });
+
     if(request.session.logged == true) {
         var params = {
             "SendCity": request.body.SendCity,
@@ -164,6 +173,12 @@ router.post("/", urlencodedParser, function (request, response) {
             //console.log(obj);
             //console.log(p1);
             response.send(j.num);
+            server.send({
+                text:    'Номер накладной: '+j.num+'\r'+'Город отправителя: '+params.SendCity+'\r'+'Адрес отправителя: '+params.SendAdress,
+                from:    "<info-svs-logistic@mail.ru>",
+                to:      "<sales@svs-logistik.ru>",
+                subject: 'Новая накладная'
+            }, function(err, message) { console.log(err || message); });
         });
     });
 
