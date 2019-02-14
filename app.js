@@ -50,7 +50,8 @@ app.use('/cargo', require('./routes/cargo'));
 app.use('/term', require('./routes/term'));
 app.use('/resend', require('./routes/resend'));
 app.use('/templates', require('./routes/templates'));
-
+app.use('/callback', require('./routes/callback'));
+app.use('/requisites', require('./routes/requisites'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
