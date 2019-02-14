@@ -16,14 +16,18 @@ router.post("/tracknum", urlencodedParser, function (request, response) {
 
   soap.createClient(url, function(err, client) {
     client.History(args, function(err, result) {
+      //if(err){response.render('err')}
       var data = result.return;
 
       var j = JSON.parse(data);
-      //console.log(p1);
-      //console.log(obj);
-      //console.log(p1);
-      response.send(j.table);
-    });
+      if(j.result == 'ws_err11'){
+        response.send('err');
+      }else {
+        //console.log(p1);
+        //console.log(obj);
+        //console.log(p1);
+        response.send(j.table);
+      } });
   });
 
 
@@ -58,14 +62,17 @@ console.log(args);
 
   soap.createClient(url, function(err, client) {
     client.Calculation(args, function(err, result) {
+
       var data = result.return;
-      console.log(data);
-      var j = JSON.parse(data);
-      //console.log(p1);
-      //console.log(obj);
-      //console.log(p1);
-      response.send(j.data);
-    });
+      if(data == 'Нет данных'){
+        response.send('err');
+      }else {
+        var j = JSON.parse(data);
+        //console.log(p1);
+        //console.log(obj);
+        //console.log(p1);
+        response.send(j.data);
+      } });
   });
 
 

@@ -9,6 +9,11 @@
  /*-------- Отслежка ------*/
 
     function trackfuncSuccess (data){
+        if(data=='err'){
+            alert('Ошибка данных');
+            location.reload();
+
+        }
         //document.getElementById('result').innerHTML = data;
        var arr = JSON.parse(data);
         document.getElementById('result').innerHTML ="";
@@ -43,6 +48,10 @@ $("#trackbutton").bind('click',function() {
 
 });
 function calcfuncSuccess (data){
+    if(data=='err'){alert('Ошибка данных');
+        location.reload();
+
+    }
     $('#result').text('');
     var arr = JSON.parse(data);
     arr.forEach(function(item, i, arr) {
