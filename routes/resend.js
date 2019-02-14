@@ -4,8 +4,8 @@ const email = require('emailjs');
 const bodyParser = require("body-parser");
 
 const server 	= email.server.connect({
-  user:    "michailtonishevsergeevich1990@mail.ru",
-  password:"a93606mjc",
+  user:    "info-svs-logistic@mail.ru",
+  password:"svs-logisticpass",
   host:    "smtp.mail.ru",
   ssl:     true
 });
@@ -22,9 +22,8 @@ router.post('/', function(req, res, next) {
 
   server.send({
     text:    reName+'\r'+reEmail+'\r'+rePhone+'\r'+reCompany+'\r'+reQuest,
-    from:    "<michailtonishevsergeevich1990@mail.ru>",
-    to:      "<timofeev.i.v@mail.ru>",
-    cc:      "<michailtonishevsergeevich1990@mail.ru>",
+    from:    "<info-svs-logistic@mail.ru>",
+    to:      "<sales@svs-logistik.ru>",
     subject: 'Обратная связь'
   }, function(err, message) { console.log(err || message); });
 });
