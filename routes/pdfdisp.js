@@ -30,7 +30,12 @@ router.get('/:num', function(req, res, next) {
         if (err){console.log("first err is " + err)};
         client.test1(args, function(err, result) {
             if (err){console.log("second err is " + err)};
-
+            if(result == undefined){
+                res.render('err', { logget: req.session.logged})
+            }
+            if(result.return == 'ws_err'){
+                res.render('err', { logget: req.session.logged})
+            }
             //console.log("result is " + result);
             var data = result.return;
             //console.log("data is " + data);

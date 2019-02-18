@@ -28,8 +28,11 @@ router.get('/', function(req, res, next) {
 
             }else {
                 client.SiteSrdirString(args, function (err, result) {
-                    if (err) {
-                        console.log(err)
+                    if(result == undefined){
+                        res.render('err', { logget: req.session.logged})
+                    }
+                    if(result.return == 'ws_err'){
+                        res.render('err', { logget: req.session.logged})
                     }
                     var data = result.return;
                     console.log("data " + data);

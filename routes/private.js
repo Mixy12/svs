@@ -25,6 +25,12 @@ router.post("/", urlencodedParser, function (request, response) {
 
   soap.createClient(url, function(err, client) {
     client.SiteAutorization(args, function(err, result) {
+      if(result == undefined){
+        response.render('err', { logget: request.session.logged})
+      }
+      if(result.return == 'f'){
+        response.render('err', { logget: request.session.logged})
+      }
       var data = result.return;
       var j;
       //console.log(data);

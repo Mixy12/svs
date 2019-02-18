@@ -20,7 +20,7 @@ router.post("/tracknum", urlencodedParser, function (request, response) {
       var data = result.return;
 
       var j = JSON.parse(data);
-      if(j.result == 'ws_err11'){
+      if(j.result == 'ws_err11' || j.result == 'err1'){
         response.send('err');
       }else {
         //console.log(p1);
@@ -64,13 +64,14 @@ console.log(args);
     client.Calculation(args, function(err, result) {
 
       var data = result.return;
-      if(data == 'Нет данных'){
+      if(result == undefined){
+        response.send('err');
+      }
+
+      if(data == 'Нет данных' ){
         response.send('err');
       }else {
         var j = JSON.parse(data);
-        //console.log(p1);
-        //console.log(obj);
-        //console.log(p1);
         response.send(j.data);
       } });
   });
@@ -95,9 +96,7 @@ router.post("/reqdel", urlencodedParser, function (request, response) {
       var data = result.return;
       console.log("data "+data);
       var j = JSON.parse(data);
-      //console.log(p1);
-      //console.log(obj);
-      //console.log(p1);
+
       response.send(j.table);
       console.log("Таблица"+j.table);
     });
@@ -123,26 +122,25 @@ router.post("/finddisp", urlencodedParser, function (request, response) {
   soap.createClient(url, function(err, client) {
     if(err){console.log(err)}
     client.SiteDispatch(args, function(err, result) {
+      if(result==undefined) {
+        return 'err';
+      }
+      if(result.return=='err1111' || result.return=='err2' ){
+
+        return 'err';
       if(err){console.log(err)}
+      }else{
       var data = result.return;
-      //console.log("data is "+ data);
-      //console.log(data);
       var j = JSON.parse(data);
-      //console.log(p1);
-      //console.log(obj);
-      //console.log(p1);
+
       response.send(j.table);
-    });
+      }});
   });
 
 
 });
 
-router.post("/disp", urlencodedParser, function (request, response) {
 
-
-
-});
 //-----------------Добавить шаблон-----------------
 router.post('/addTemp', function(req, res, next) {
 

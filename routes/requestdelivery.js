@@ -28,6 +28,12 @@ router.get('/', function(req, res, next) {
             soap.createClient(url, function(err, client) {
                 if(err){console.log(err)}
                 client.SiteSrdirString(args, function(err, result) {
+                    if(result == undefined){
+                        res.render('err', { logget: req.session.logged})
+                    }
+                    if(result.return == 'ws_err'){
+                        res.render('err', { logget: req.session.logged})
+                    }
                     if(err){console.log(err)}
                     var data = result.return;
                     console.log("data "+data);
@@ -71,6 +77,12 @@ router.get('/:num', function(req, res, next) {
     soap.createClient(url, function(err, client) {
         if (err){console.log("first err is " + err)};
         client.test1(args, function(err, result) {
+            if(result == undefined){
+                res.render('err', { logget: req.session.logged})
+            }
+            if(result.return == 'ws_err'){
+                res.render('err', { logget: req.session.logged})
+            }
             if (err){console.log("second err is " + err)};
 
             //console.log("result is " + result);
@@ -165,6 +177,12 @@ router.post("/", urlencodedParser, function (request, response) {
     soap.createClient(url, function(err, client) {
         if(err){console.log(err)}
         client.AddDispString(args, function(err, result) {
+            if(result == undefined){
+                res.render('err', { logget: request.session.logged})
+            }
+            if(result.return == 'ws_err'){
+                res.render('err', { logget: request.session.logged})
+            }
             if(err){console.log(err)}
             var data = result.return;
             console.log(data);

@@ -140,6 +140,11 @@ function removecargo(name) {
 
 //-----------------------------------------------------------
 function finddispSuccess (data){
+    if(data=='err'){
+        alert('Ошибка данных');
+        location.reload();
+
+    }
     var arr = JSON.parse(data);
     $("#disptable").html("");
     $("#disptable").append(" <table class=\"table table-bordered table-hover\" >\n" +
@@ -170,7 +175,7 @@ function finddispSuccess (data){
 
 function finddispfuncbefore (){}
 
-function finddispfuncerror (){alert( "Ошибка :(");}
+function finddispfuncerror (){console.log(err);}
 
 
 
