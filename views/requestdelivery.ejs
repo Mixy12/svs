@@ -92,37 +92,37 @@
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="SendCity">Город:</label>
                         <div class="col-sm-8 paddingbottomclass">
-                            <input name = "SendCity" id="SendCity" type="text" class="form-control complite" placeholder="Нужно заполнить...">
+                            <input value="<%=content.SendCity %>" name = "SendCity" id="SendCity" type="text" class="form-control complite" placeholder="Нужно заполнить...">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="SendAdress">Адрес:</label>
                         <div class="col-sm-8 paddingbottomclass">
-                            <input name = "SendAdress" id="SendAdress" type="text" class="form-control">
+                            <input value="<%=content.SendAdress %>" name = "SendAdress" id="SendAdress" type="text" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="SendPhone">Телефон:</label>
                         <div class="col-sm-8 paddingbottomclass">
-                            <input name = "SendPhone" id="SendPhone" type="text" class="form-control" placeholder="Нужно заполнить...">
+                            <input value="<%=content.SendPhone %>" name = "SendPhone" id="SendPhone" type="text" class="form-control" placeholder="Нужно заполнить...">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="SendPerson">Контактное лицо:</label>
                         <div class="col-sm-8 paddingbottomclass">
-                            <input name = "SendPerson" id="SendPerson" type="text" class="form-control">
+                            <input value="<%=content.SendPerson %>" name = "SendPerson" id="SendPerson" type="text" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="SendCompany">Компания:</label>
                         <div class="col-sm-8 paddingbottomclass">
-                            <input name = "SendCompany" id="SendCompany" type="text" class="form-control">
+                            <input value="<%=content.SendCompany %>" name = "SendCompany" id="SendCompany" type="text" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="SendAddInfo">Примечание:</label>
                         <div class="col-sm-8">
-                            <input name = "SendAddInfo" id="SendAddInfo" type="text" class="form-control">
+                            <input value="<%=content.SendAddInfo %>" name = "SendAddInfo" id="SendAddInfo" type="text" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -176,37 +176,37 @@
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="SendCity">Город:</label>
                         <div class="col-sm-8 paddingbottomclass">
-                            <input name = "RecCity" id="RecCity" type="text" class="form-control complite" placeholder="Нужно заполнить...">
+                            <input value="<%=content.RecCity %>" name = "RecCity" id="RecCity" type="text" class="form-control complite" placeholder="Нужно заполнить...">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="SendAdress">Адрес:</label>
                         <div class="col-sm-8 paddingbottomclass">
-                            <input name = "RecAdress" id="RecAdress" type="text" class="form-control">
+                            <input value="<%=content.RecAdress %>" name = "RecAdress" id="RecAdress" type="text" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="SendPhone">Телефон:</label>
                         <div class="col-sm-8 paddingbottomclass">
-                            <input name = "RecPhone" id="RecPhone" type="text" class="form-control" placeholder="Нужно заполнить...">
+                            <input value="<%=content.RecPhone %>" name = "RecPhone" id="RecPhone" type="text" class="form-control" placeholder="Нужно заполнить...">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="SendPerson">Контактное лицо:</label>
                         <div class="col-sm-8 paddingbottomclass">
-                            <input name = "RecPerson" id="RecPerson" type="text" class="form-control">
+                            <input value="<%=content.RecPerson %>" name = "RecPerson" id="RecPerson" type="text" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="SendCompany">Компания:</label>
                         <div class="col-sm-8 paddingbottomclass">
-                            <input name = "RecCompany" id="RecCompany" type="text" class="form-control">
+                            <input value="<%=content.RecCompany %>" name = "RecCompany" id="RecCompany" type="text" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="SendAddInfo">Примечание:</label>
                         <div class="col-sm-8">
-                            <input name = "RecAddInfo" id="RecAddInfo" type="text" class="form-control">
+                            <input value="<%=content.RecAddInfo %>" name = "RecAddInfo" id="RecAddInfo" type="text" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -350,20 +350,15 @@
                         </div>
                     </div>
                     <div id ="result-adddisp"><button id="calcbtn" type="button" class="btn btn-default">Расчет стоимости доставки</button>     <button id="newDispSend" type="button" class="btn btn-default" >Завершить оформление накладной</button></div>
-                    <div class="container">
-                        <p id="result"></p>
-                    </div>
-                </div>
                 <div class="panel-body">
-
+                    <p class="hidden" id="result"></p>
                 </div>
             </div>
-
         </div>
     </div>
     <script src="/public/js/citys.js" type="text/javascript"></script>
 </div>
 
 
-
+</div>
 <%- include("parts/footer.ejs") %>

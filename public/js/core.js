@@ -261,9 +261,11 @@ $(document).on('dblclick', '.tblSpravTo', function() {
 
 function newcalcfuncSuccess (data){
     $('#result').text('');
+    $('#onePrice').text('');
     var arr = JSON.parse(data);
-    alert(arr);
-    arr.forEach(function(item, i, arr) {
+
+        arr.forEach(function(item, i, arr) {
+            $('#onePrice').val(item.price+' руб.');
         $("#result").append("<br><p>По направлению "+$('#SendCity').val()+" - "+$('#RecCity').val()+" предлагаем следущие тарифы:</p>" +
             " <ul><li>Физический вес: "+$('#totalm').val()+"</li><li>Объемный вес: "+$('#totalv').val()+"</li><li>Стоимость доставки: "+item.price+"</li><li>Срок доставки(раб. дней): "+item.time+"</li></ul>");
     });
