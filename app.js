@@ -16,7 +16,7 @@ var app = express();
 
 
 app.use(session({ secret: 'keyboard cat'}));
-
+app.use(cookieParser('kiska','mishka'));
 
 
 
@@ -28,7 +28,7 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+
 app.use('/public', express.static(__dirname + '/public'));
 //app.use(express.static(path.join(__dirname, '/public')));
 
@@ -51,6 +51,7 @@ app.use('/resend', require('./routes/resend'));
 app.use('/templates', require('./routes/templates'));
 app.use('/callback', require('./routes/callback'));
 app.use('/doc', require('./routes/doc'));
+app.use('/testcoocie', require('./routes/testcoocie'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

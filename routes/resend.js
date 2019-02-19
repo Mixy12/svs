@@ -12,7 +12,7 @@ const server 	= email.server.connect({
 
 router.post('/', function(req, res, next) {
 
-  res.render('avia', { logget: req.session.logged});
+  res.render('avia', { logget: req.cookies.logged});
   let reName = req.body.reName;
   let reEmail = req.body.reEmail;
   let rePhone = req.body.rePhone;

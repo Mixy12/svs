@@ -7,8 +7,8 @@ router.get('/:num', function(req, res, next) {
 
     var params = {
         UserIP: req.connection.remoteAddress.toString(),
-        Hash: req.session.hash,
-        UserId: req.session.userId,
+        Hash: req.cookies.hash,
+        UserId: req.cookies.userId,
         num: req.params.num.toString()
     };
 
@@ -23,10 +23,10 @@ router.get('/:num', function(req, res, next) {
         client.test1(args, function(err, result) {
             if (err){console.log("second err is " + err)};
                 if(result == undefined){
-                    res.render('err', { logget: req.session.logged})
+                    res.render('err', { logget: req.cookies.logged})
                 }
                 if(result.return == 'ws_err'){
-                    res.render('err', { logget: req.session.logged})
+                    res.render('err', { logget: req.cookies.logged})
                 }
             //console.log("result is " + result);
             var data = result.return;

@@ -5,7 +5,7 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-  res.render('callback', { logget: req.session.logged });
+  res.render('callback', { logget: req.cookies.logged });
 });
 
 module.exports = router;

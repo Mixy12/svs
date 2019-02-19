@@ -10,12 +10,12 @@ var data;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    if(req.session.logged == true) {
+    if(req.cookies.logged == 'true') {
         let content;
 //-------------------------------------------------------------------------------
             let params = {
-                "UserId": req.session.userId,
-                "Hash": req.session.hash,
+                "UserId": req.cookies.userId,
+                "Hash": req.cookies.hash,
                 "UserIP": req.connection.remoteAddress
 
             };
@@ -29,18 +29,21 @@ router.get('/', function(req, res, next) {
                 if(err){console.log(err)}
                 client.SiteSrdirString(args, function(err, result) {
                     if(err){
-                        res.render('err', { logget: req.session.logged})
+                        res.render('err', { logget: req.cookies.logged})
                     }
                     if(result == undefined){
-                        res.render('err', { logget: req.session.logged})
+                        res.render('err', { logget: req.cookies.logged})
                     }
 
                     if(result.return == 'ws_err' ){
-                        res.render('err', { logget: req.session.logged})
+                        res.render('err', { logget: req.cookies.logged})
                     }
                     if(err){console.log(err)}
                     let data = result.return;
                     console.log("data "+data);
+                    if(data == 'ws_err' ){
+                        res.render('err', { logget: req.cookies.logged})
+                    }
                      let j = JSON.parse(data);
                     //console.log(p1);
                     //console.log(obj);
@@ -50,8 +53,8 @@ router.get('/', function(req, res, next) {
                     if(req.query.copy){
                         let params = {
                             UserIP: req.connection.remoteAddress.toString(),
-                            Hash: req.session.hash,
-                            UserId: req.session.userId,
+                            Hash: req.cookies.hash,
+                            UserId: req.cookies.userId,
                             num: req.query.copy.toString()
                         };
                         console.log('params');
@@ -67,20 +70,20 @@ router.get('/', function(req, res, next) {
                             if (err){console.log("first err is " + err)};
                             client.test1(args, function(err, result) {
                                 if (err){console.log("second err is " + err)
-                                    res.render('err', { logget: req.session.logged})
+                                    res.render('err', { logget: req.cookies.logged})
                                 };
                                 if(result === undefined){
-                                    res.render('err', { logget: req.session.logged})
+                                    res.render('err', { logget: req.cookies.logged})
                                 }
                                 if(result.return == 'ws_err'){
-                                    res.render('err', { logget: req.session.logged})
+                                    res.render('err', { logget: req.cookies.logged})
                                 }
                                 //console.log("result is " + result);
                                 let data = result.return;
                                 //console.log("data is " + data);
                                  content = JSON.parse(data);
                                 res.render('requestdelivery',{
-                                    logget: req.session.logged,
+                                    logget: req.cookies.logged,
                                     table:j.table,
                                     content:content
                             });
@@ -90,24 +93,19 @@ router.get('/', function(req, res, next) {
                         content = '';
 
                             res.render('requestdelivery',{
-                                logget: req.session.logged,
+                                logget: req.cookies.logged,
                                 table:j.table,
                                 content:content
                         })}
                     //------------------------------------------------
-
-
                     })
-
-
-
  //------------------------------------------------------
 
         });
     }else{
         let content = '';
         res.render('requestdelivery',{
-            logget: req.session.logged,
+            logget: req.cookies.logged,
             content:content
         });
     }
@@ -117,8 +115,8 @@ router.get('/:num', function(req, res, next) {
 
     let params = {
         UserIP: req.connection.remoteAddress.toString(),
-        Hash: req.session.hash,
-        UserId: req.session.userId,
+        Hash: req.cookies.hash,
+        UserId: req.cookies.userId,
         num: req.params.num.toString()
     };
     let paramsOne = JSON.stringify(params);
@@ -130,10 +128,10 @@ router.get('/:num', function(req, res, next) {
         if (err){console.log("first err is " + err)};
         client.test1(args, function(err, result) {
             if(result == undefined){
-                res.render('err', { logget: req.session.logged})
+                res.render('err', { logget: req.cookies.logged})
             }
             if(result.return == 'ws_err'){
-                res.render('err', { logget: req.session.logged})
+                res.render('err', { logget: req.cookies.logged})
             }
             if (err){console.log("second err is " + err)};
 
@@ -143,7 +141,7 @@ router.get('/:num', function(req, res, next) {
             var j = JSON.parse(data);
             console.log(j);
             //var k = JSON.parse(j.val);
-            res.render('requestdelivery', { num: j,logget: req.session.logged});
+            res.render('requestdelivery', { num: j,logget: req.cookies.logged});
         });
     });
 
@@ -158,7 +156,7 @@ router.post("/", urlencodedParser, function (request, response) {
         ssl:     true
     });
 
-    if(request.session.logged == true) {
+    if(request.cookies.logged == 'true') {
         var params = {
             "SendCity": request.body.SendCity,
             "SendAdress": request.body.SendAdress,
@@ -184,8 +182,8 @@ router.post("/", urlencodedParser, function (request, response) {
             "Scan": request.body.Scan,
             "Opasn": request.body.Opasn,
             "Podp": request.body.Podp,
-            "UserId": request.session.userId,
-            "Hash": request.session.hash,
+            "UserId": request.cookies.userId,
+            "Hash": request.cookies.hash,
             "UserIP": request.connection.remoteAddress
 
         };
@@ -230,10 +228,10 @@ router.post("/", urlencodedParser, function (request, response) {
         if(err){console.log(err)}
         client.AddDispString(args, function(err, result) {
             if(result == undefined){
-                res.render('err', { logget: request.session.logged})
+                response.render('err', { logget: request.cookies.logged})
             }
             if(result.return == 'ws_err'){
-                res.render('err', { logget: request.session.logged})
+                response.render('err', { logget: request.cookies.logged})
             }
             if(err){console.log(err)}
             var data = result.return;
@@ -253,7 +251,5 @@ router.post("/", urlencodedParser, function (request, response) {
         });
     });
 
-
 });
-
 module.exports = router;

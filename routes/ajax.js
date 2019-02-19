@@ -35,15 +35,15 @@ router.post("/tracknum", urlencodedParser, function (request, response) {
 
 
 router.post("/calculate", urlencodedParser, function (request, response) {
-  if(request.session.hash){
-    var hash = request.session.hash;
+  if(request.cookies.hash){
+    var hash = request.cookies.hash;
   } else {
     var hash = "";
   }
 
 
-  if(request.session.userId){
-    var userId = request.session.userId;
+  if(request.cookies.userId){
+    var userId = request.cookies.userId;
   } else {
     var userId = "";
   }
@@ -83,8 +83,8 @@ console.log(args);
 //--------------заполнить из справочника----
 router.post("/reqdel", urlencodedParser, function (request, response) {
   var params = {
-    "UserId": request.session.userId,
-    "Hash": request.session.hash,
+    "UserId": request.cookies.userId,
+    "Hash": request.cookies.hash,
     "UserIP": request.connection.remoteAddress
 
   };
@@ -111,8 +111,8 @@ module.exports = router;
 router.post("/finddisp", urlencodedParser, function (request, response) {
   var params = {
     "UserIP": request.connection.remoteAddress,
-    "Hash": request.session.hash,
-    "UserId": request.session.userId,
+    "Hash": request.cookies.hash,
+    "UserId": request.cookies.userId,
     "from": request.body.from.toString(),
     "to": request.body.to.toString()
   };
@@ -146,8 +146,8 @@ router.post('/addTemp', function(req, res, next) {
 
   var params = {
     UserIP: req.connection.remoteAddress.toString(),
-    Hash: req.session.hash,
-    UserId: req.session.userId,
+    Hash: req.cookies.hash,
+    UserId: req.cookies.userId,
     name:req.body.tempName,
     Address:req.body.tempAdress,
     City:req.body.tempCity,
@@ -166,7 +166,7 @@ router.post('/addTemp', function(req, res, next) {
     client.SrAddString(args, function(err, result) {
       if (err){console.log("second err is " + err)
         res.render('templates',{
-          logget: req.session.logged})
+          logget: req.cookies.logged})
       }else {
         var data = result.return;
         res.send(data);
@@ -181,8 +181,8 @@ router.post('/delTemp', function(req, res, next) {
 
   var params = {
     UserIP: req.connection.remoteAddress.toString(),
-    Hash: req.session.hash,
-    UserId: req.session.userId,
+    Hash: req.cookies.hash,
+    UserId: req.cookies.userId,
     name:req.body.name
   };
 
@@ -195,7 +195,7 @@ router.post('/delTemp', function(req, res, next) {
     client.SrDelString(args, function(err, result) {
       if (err){console.log("second err is " + err)
         res.render('templates',{
-          logget: req.session.logged})
+          logget: req.cookies.logged})
       }else {
         var data = result.return;
         res.send(data);

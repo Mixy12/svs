@@ -9,7 +9,7 @@ const urlencodedParser = bodyParser.urlencoded({extended: false});
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-  res.render('term', { logget: req.session.logged});
+  res.render('term', { logget: req.cookies.logged});
 
 });
 

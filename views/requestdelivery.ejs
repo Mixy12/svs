@@ -47,13 +47,13 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-sm-6">Данные отправителя</div>
-                        <% if(logget){ %>
+                        <% if(logget=='true'){ %>
                         <div class="col-sm-6"><a href="#send" id="asprav" class="btn btn-default" data-toggle="collapse">Заполнить из справочника</a> </div>
                     <%}%>
                     </div>
 
 
-                    <% if(logget){ %>
+                    <% if(logget=='true'){ %>
                     <div class="row">
 
 
@@ -135,12 +135,12 @@
                     <div class="row">
                         <div class="col-sm-6">Данные получателя</div>
 
-                        <% if(logget){ %>
+                        <% if(logget=='true'){ %>
                         <div class="col-sm-6"><a href="#rec" id="butsprav" class="btn btn-default" data-toggle="collapse">Заполнить из справочника</a>
                         </div>
                         <%}%>
                     </div>
-                     <% if(logget){ %>
+                     <% if(logget=='true'){ %>
                     <div class="row">
                         <div id="rec" class="collapse">
                             <table class = "table dispatch table-striped table-hover" >
@@ -292,7 +292,7 @@
                             <select class="form-control" name = "PayType" id="PayType">
                                 <option value="ОплатаНаличнымиПриОтправлении">Наличными при отправлении</option>
                                 <option value="ОплатаНаличнымиПриПолучении">Наличными при получении</option>
-                                <% if(logget){ %>
+                                <% if(logget=='true'){ %>
                                 <option selected value="БезналичнаяОплата">Безналичная оплата по договору</option>
                                 <%}%>
                             </select>

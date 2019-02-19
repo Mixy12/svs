@@ -4,13 +4,13 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  if(req.session.logged === true) {
+  if(req.cookies.logged == 'true') {
     res.render('mydisp',{
-      logget: req.session.logged
+      logget: req.cookies.logged
     });
   }else{
     res.render('login',{
-      logget: req.session.logged
+      logget: req.cookies.logged
     });
   }
 });

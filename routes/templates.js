@@ -7,12 +7,12 @@ const urlencodedParser = bodyParser.urlencoded({extended: false});
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    if(req.session.logged == true) {
+    if(req.cookies.logged == 'true') {
 //-------------------------------------------------------------------------------
 
         var params = {
-            "UserId": req.session.userId,
-            "Hash": req.session.hash,
+            "UserId": req.cookies.userId,
+            "Hash": req.cookies.hash,
             "UserIP": req.connection.remoteAddress
 
         };
@@ -24,15 +24,15 @@ router.get('/', function(req, res, next) {
         soap.createClient(url, function(err, client) {
             if(err){console.log(err);
                 res.render('templates',{
-                    logget: req.session.logged})
+                    logget: req.cookies.logged})
 
             }else {
                 client.SiteSrdirString(args, function (err, result) {
                     if(result == undefined){
-                        res.render('err', { logget: req.session.logged})
+                        res.render('err', { logget: req.cookies.logged})
                     }
                     if(result.return == 'ws_err'){
-                        res.render('err', { logget: req.session.logged})
+                        res.render('err', { logget: req.cookies.logged})
                     }
                     var data = result.return;
                     console.log("data " + data);
@@ -40,7 +40,7 @@ router.get('/', function(req, res, next) {
                     console.log(j.table);
 
                     res.render('templates', {
-                        logget: req.session.logged,
+                        logget: req.cookies.logged,
                         table: j.table
 
                     });
@@ -51,7 +51,7 @@ router.get('/', function(req, res, next) {
         });
     }else{
         res.render('login',{
-            logget: req.session.logged
+            logget: req.cookies.logged
         });
     }
 });

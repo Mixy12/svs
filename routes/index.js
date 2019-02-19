@@ -5,15 +5,15 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  sess = req.session;
-  console.log(sess);
+
   if(req.query.logout == 'true'){
-    req.session.logged = false;
-    req.session.userId = '';
-    req.session.hash = '';
-    req.session.alias = '';
+    res.cookie('logged', false);
+    res.cookie('userId', '');
+    res.cookie('hash', '');
+    res.cookie('alias', '');
+    res.render('index', { logget: false });
   }
-  res.render('index', { logget: req.session.logged });
+   res.render('index', { logget: req.cookies.logged });
 });
 
 module.exports = router;

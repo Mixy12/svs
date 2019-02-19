@@ -8,7 +8,6 @@ const md5 = require('md5');
 const url = 'http://82.200.49.118/cs/maws.1cws?wsdl';
 var sess;
 router.post("/", urlencodedParser, function (request, response) {
-  sess = request.session;
 
   let login = request.body.login;
   let password = request.body.password;
@@ -26,10 +25,10 @@ router.post("/", urlencodedParser, function (request, response) {
   soap.createClient(url, function(err, client) {
     client.SiteAutorization(args, function(err, result) {
       if(result == undefined){
-        response.render('err', { logget: request.session.logged})
+        response.render('err', { logget: request.cookies.logged})
       }
       if(result.return == 'f'){
-        response.render('err', { logget: request.session.logged})
+        response.render('err', { logget: request.cookies.logged})
       }
       var data = result.return;
       var j;
@@ -42,17 +41,17 @@ router.post("/", urlencodedParser, function (request, response) {
       //console.log(j);
 
       if(j!='f'){
-        sess.logged = true;
-        sess.userId = j.UserId;
-        sess.hash = j.hash;
-        sess.alias = j.alias;
-        console.log(sess);
+        response.cookie('logged', true);
+        response.cookie('userId', j.UserId);
+        response.cookie('hash', j.hash);
+        response.cookie('alias', j.alias);
+
         response.render('index',{
-          logget: request.session.logged
+          logget: 'true'
         });}
       else{
         response.render('login',{
-          logget: request.session.logged
+          logget: request.cookies.logged
         })
       }
 
@@ -69,15 +68,16 @@ router.post("/", urlencodedParser, function (request, response) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    var menusetting = menucore.menusetting(req.session.logged);
 
-  if(req.session.logged == true) {
+  if(req.cookies.logged == true) {
     res.render('cabinet',{
-      logget: req.session.logged
+      logget: req.cookies.logged
     });
   }else{
+    console.log('req.cookie.logged');
+    console.log(req.cookies.logged);
     res.render('login',{
-      logget: req.session.logged
+      logget: req.cookies.logged
     });
   }
 });
