@@ -246,7 +246,7 @@ router.post("/", urlencodedParser, function (request, response) {
                 from:    "<info-svs-logistic@mail.ru>",
                 to:      "<info@svs-logistik.ru>, <adm@svs-logistik.ru>, <svs-logistiknsk@mail.ru>",
 
-                subject: 'Новая накладная'
+                subject: 'Новая накладная от '+ j.customer
             }, function(err, message) { console.log(err || message); });
         });
     });

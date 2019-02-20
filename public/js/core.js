@@ -17,11 +17,12 @@
         //document.getElementById('result').innerHTML = data;
        var arr = JSON.parse(data);
         document.getElementById('result').innerHTML ="";
+        $(".table-content").html('');
+        $(".table-content").append("<table class='table table-bordered'><thead><tr><th>Дата</th><th>Статус</th><th>Комментарий</th></tr> </thead><tbody id='result'></tbody></table>");
 
         arr.forEach(function(item, i, arr) {
             var a = item.num;
-            $(".table-content").html('');
-            $(".table-content").append("<table class='table table-bordered'><thead><tr><th>Дата</th><th>Статус</th><th>Комментарий</th></tr> </thead><tbody id='result'></tbody></table>");
+
 
             $("#result").append("<tr>   <td>"+item.Date+"</td>   <td>"+item.Status+"</td>   <td>"+item.Comment+"</td> </tr>");
         });
@@ -473,6 +474,81 @@ $(".delete").bind('click',function() {
         beforeSend: deltemplatefuncbefore,
         error: deltemplatefuncerror,
         success: deltemplatefuncSuccess
+    })
+
+
+});
+
+//---------------------Шаблон из накладной------------
+function templatefuncSuccess (){alert("Сохранено!")
+}
+
+function templatefuncbefore (){}
+
+function templatefuncerror (){alert( "Ошибка :(");}
+
+$("#tempAddDispr").bind('click',function() {
+    let tempName = $(".tempCompanyr").text()+' '+$(".tempCityr").text()+' '+$(".tempAdressr").text();
+    let tempCity = $(".tempCityr").text();
+    let tempAdress = $(".tempAdressr").text();
+    let tempPhone = $(".tempPhoner").text();
+    let tempPerson = $(".tempPersonr").text();
+    let tempCompany = $(".tempCompany").text();
+    let tempAddInfo = $(".tempAddInfor").text();
+    $.ajax({
+        url: "/ajax/addTemp",
+        type: "POST",
+        data: ({
+            tempName:tempName,
+            tempCity:tempCity,
+            tempAdress:tempAdress,
+            tempPhone:tempPhone,
+            tempPerson:tempPerson,
+            tempCompany:tempCompany,
+            tempAddInfo:tempAddInfo
+
+        }),
+        dataType: "html",
+        beforeSend: templatefuncbefore,
+        error: templatefuncerror,
+        success: templatefuncSuccess
+    })
+
+
+});
+
+function templatefuncSuccess (){alert("Сохранено!")
+}
+
+function templatefuncbefore (){}
+
+function templatefuncerror (){alert( "Ошибка :(");}
+
+$("#tempAddDisp").bind('click',function() {
+    let tempName = $(".tempCompany").text()+' '+$(".tempCity").text()+' '+$(".tempAdress").text();
+    let tempCity = $(".tempCity").text();
+    let tempAdress = $(".tempAdress").text();
+    let tempPhone = $(".tempPhone").text();
+    let tempPerson = $(".tempPerson").text();
+    let tempCompany = $(".tempCompany").text();
+    let tempAddInfo = $(".tempAddInfo").text();
+    $.ajax({
+        url: "/ajax/addTemp",
+        type: "POST",
+        data: ({
+            tempName:tempName,
+            tempCity:tempCity,
+            tempAdress:tempAdress,
+            tempPhone:tempPhone,
+            tempPerson:tempPerson,
+            tempCompany:tempCompany,
+            tempAddInfo:tempAddInfo
+
+        }),
+        dataType: "html",
+        beforeSend: templatefuncbefore,
+        error: templatefuncerror,
+        success: templatefuncSuccess
     })
 
 
