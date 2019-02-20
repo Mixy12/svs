@@ -1,9 +1,12 @@
 <html>
 
 <head>
+
     <meta http-equiv=Content-Type content="text/html; charset=utf-8">
 
     <title>СВС-Логистик</title>
+    <script type="text/javascript" src="/public/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="/public/js/jquery-barcode.js"></script>
     <style>
         @media print {
             body {-webkit-print-color-adjust: exact;}
@@ -71,6 +74,10 @@
         .disp_check{
             text-align: center;
         }
+        .barcode {
+            margin-left: auto;
+            margin-right: auto;
+        }
 
     </style>
 </head>
@@ -91,11 +98,12 @@
             <td style='width:20mm;'></td>
         </tr>
         <tr>
-            <td colspan=2 rowspan=2 >
-                <p style="font-family: Code39;" class = "disp_bc" >*<%=params %>*</p>
-                <p class = "disp_num" ><%=params %></p>
+            <td colspan=3 rowspan=2 >
+               <!-- <p  id="bcTarget" class = "disp_bc" ></p> -->
+                <div class="barcode"></div>
+
             </td>
-            <td colspan=2 rowspan=2 class = "disptdcontact">
+            <td  rowspan=2 class = "disptdcontact">
                 <p class= "p_contact" >+7 (383) 214-41-97</p>
                 <p class= "p_contact" >+7 (383) 214-41-98</p>
                 <p class= "p_contact" >www.svs-logostik.ru</p>
@@ -260,11 +268,10 @@
             <td style='width:20mm;'></td>
         </tr>
         <tr>
-            <td colspan=2 rowspan=2 >
-                <p style="font-family: Code39;" class = "disp_bc" >*<%=params %>*</p>
-                <p class = "disp_num" ><%=params %></p>
+            <td colspan=3 rowspan=2 >
+                <div class="barcode"></div>
             </td>
-            <td colspan=2 rowspan=2 class = "disptdcontact">
+            <td  rowspan=2 class = "disptdcontact">
                 <p class= "p_contact" >+7 (383) 214-41-97</p>
                 <p class= "p_contact" >+7 (383) 214-41-98</p>
                 <p class= "p_contact" >www.svs-logostik.ru</p>
@@ -407,8 +414,21 @@
             <td class = "disptd" colspan=4 >ФИО Сотрудника Исполнителя</td>
         </tr>
     </table>
-
+    <div id="code"></div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".barcode").barcode(
+            "<%=params %>",
+            "code39",{barHeight: 25});
+    });
+$(document).ready(function () {
+    window.print();
+})
+
+</script>
+
 </body>
 
 </html>

@@ -33,7 +33,7 @@ router.get('/', function(req, res, next) {
                     }
                     if(result.return == 'ws_err'){
                         res.render('err', { logget: req.cookies.logged})
-                    }
+                    }else{
                     var data = result.return;
                     console.log("data " + data);
                     var j = JSON.parse(data);
@@ -45,7 +45,7 @@ router.get('/', function(req, res, next) {
 
                     });
 
-                });
+                }});
             }
             //------------------------------------------------------
         });
