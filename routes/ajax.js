@@ -59,7 +59,6 @@ router.post("/calculate", urlencodedParser, function (request, response) {
     };
   var args = {CalcXDTO:params};
 console.log(args);
-
   soap.createClient(url, function(err, client) {
     client.Calculation(args, function(err, result) {
 
