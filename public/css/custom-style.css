@@ -600,3 +600,6 @@ h7 {
     margin-bottom: 10px;
     margin-left: 15px;
 }
+.hiddenPay{
+    display: none;
+}
