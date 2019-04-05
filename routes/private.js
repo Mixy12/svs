@@ -45,7 +45,7 @@ router.post("/", urlencodedParser, function (request, response) {
         response.cookie('userId', j.UserId);
         response.cookie('hash', j.hash);
         response.cookie('alias', j.alias);
-
+        response.cookie('pay', j.pay);
         response.render('index',{
           logget: 'true'
         });}

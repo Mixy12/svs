@@ -1,5 +1,23 @@
 <%- include("parts/head.ejs") %>
 <%- include("parts/menu.ejs") %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        if($('#PayType').val()=='БезналичнаяОплата'){
+            $('.pay').removeClass('hiddenPay')
+        }
+         $('#PayType').change(function(){
+            if($('#PayType').val()=='БезналичнаяОплата'){
+                $('.pay').removeClass('hiddenPay')
+            }else{
+                $('.pay').addClass('hiddenPay')
+            }
+        })
+    })
+       
+    </script>
+
 <div class="loader loader-bg">
     <div class="loader-inner ball-clip-rotate-pulse">
         <div></div>
@@ -298,7 +316,18 @@
                             </select>
                         </div>
                     </div>
-
+                    <% if(pay){ %>
+                    <div class="form-group pay hiddenPay">
+                        <label class="control-label col-sm-3" for="sel1">Плательщик:</label>
+                        <div class="col-sm-9 paddingbottomclass">
+                            <select class="form-control" name = "Pay" id="Pay">
+                                    <% pay.forEach(function(p) { %>
+                                <option value="<%=p.id %>"><%=p.name %></option>
+                                    <%})%>
+                            </select>
+                        </div>
+                    </div>
+                    <%}%>
                     <div class="form-group">
                         <label class="control-label col-sm-3" for="sel1">Страховая стоимость:</label>
                         <div class="col-sm-9 paddingbottomclass">

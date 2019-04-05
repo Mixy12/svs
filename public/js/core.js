@@ -79,7 +79,7 @@ $("#calcbutton").bind('click',function() {
             recdCity: recdCity,
             weight: weight,
             volume: volume
-                }),
+                }), 
         dataType: "html",
         beforeSend: calcfuncbefore,
         error: calcfuncerror,
@@ -158,6 +158,7 @@ function finddispSuccess (data){
         "            <th>Получатель</th>\n" +
         "            <th>Мест</th>\n" +
         "            <th>Вес</th>\n" +
+        "            <th>Плательщик</th>\n" +
         "            <th>Тип доставки</th>\n" +
         "            <th>Статус</th>\n" +
         "            <th>Дата доставки</th>\n" +
@@ -168,7 +169,7 @@ function finddispSuccess (data){
         "        </tbody>\n" +
         "    </table>");
     arr.forEach(function(item, i, arr) {
-        $("#result").append("<tr id=\"disp\"   name=\""+item.num+"\"><td>"+item.num+"</td><td>"+item.startdate+"</td><td>"+item.sendcity+"</td><td>"+item.reccity+"</td><td>"+item.reccom+"</td><td>"+item.quan+"</td><td>"+item.weight+"</td><td>"+item.type+"</td><td>"+item.status+"</td><td>"+item.date+"</td><td>"+item.rec+"</td></tr>"
+        $("#result").append("<tr id=\"disp\"   name=\""+item.num+"\"><td>"+item.num+"</td><td>"+item.startdate+"</td><td>"+item.sendcity+"</td><td>"+item.reccity+"</td><td>"+item.reccom+"</td><td>"+item.quan+"</td><td>"+item.weight+"</td><td>"+item.pay+"</td><td>"+item.type+"</td><td>"+item.status+"</td><td>"+item.date+"</td><td>"+item.rec+"</td></tr>"
         );
     });
 
@@ -184,7 +185,7 @@ $('#findDisp').bind('click',function () {
     let from = new Date($("#from").val());
     let day = addZero(from.getDate());
     let mon = addZero(from.getMonth()+1);
-    let year = from.getFullYear();
+    let year = from.getFullYear(); 
     from = day+'-'+mon+'-'+year;
     let to = new Date($("#to").val());
      day = addZero(to.getDate());
@@ -328,6 +329,7 @@ $(document).ready(function () {
         let RecCompany = $('#RecCompany').val();
         let RecAddInfo = $('#RecAddInfo').val();
         let DelType = $('#DelType').val();
+        let pay = $('#Pay').val();
         let PayType = $('#PayType').val();
         let InsurValue = $('#InsurValue').val();
         let COD = $('#COD').val();
@@ -366,6 +368,7 @@ $(document).ready(function () {
                 RecAddInfo:RecAddInfo,
                 DelType:DelType,
                 PayType:PayType,
+                pay:pay,
                 InsurValue:InsurValue,
                 COD:COD,
                 carg:carg,

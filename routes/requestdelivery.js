@@ -11,6 +11,7 @@ var data;
 /* GET home page. */
 router.get('/', function(req, res, next) {
     if(req.cookies.logged == 'true') {
+        console.log(req.cookies);
         let content;
 //-------------------------------------------------------------------------------
             let params = {
@@ -40,7 +41,7 @@ router.get('/', function(req, res, next) {
                     }
                     if(err){console.log(err)}
                     let data = result.return;
-                    console.log("data "+data);
+                    //console.log("data "+data);
                     if(data == 'ws_err' ){
                         res.render('err', { logget: req.cookies.logged})
                     }
@@ -95,7 +96,8 @@ router.get('/', function(req, res, next) {
                             res.render('requestdelivery',{
                                 logget: req.cookies.logged,
                                 table:j.table,
-                                content:content
+                                content:content,
+                                pay:req.cookies.pay
                         })}
                     //------------------------------------------------
                     })
@@ -171,6 +173,7 @@ router.post("/", urlencodedParser, function (request, response) {
             "RecCompany": request.body.RecCompany,
             "RecAddInfo": request.body.RecAddInfo,
             "PayType": request.body.PayType,
+            "pay": request.body.pay,
             "DelType": request.body.DelType,
             "InsurValue": request.body.InsurValue,
             "COD": request.body.COD,
