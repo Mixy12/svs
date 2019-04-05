@@ -316,7 +316,8 @@
                             </select>
                         </div>
                     </div>
-                    <% if(pay){ %>
+		<% if(pay !== undefined){%>
+                    <% if(pay.length !==0){ %>
                     <div class="form-group pay hiddenPay">
                         <label class="control-label col-sm-3" for="sel1">Плательщик:</label>
                         <div class="col-sm-9 paddingbottomclass">
@@ -328,6 +329,7 @@
                         </div>
                     </div>
                     <%}%>
+			<%}%>
                     <div class="form-group">
                         <label class="control-label col-sm-3" for="sel1">Страховая стоимость:</label>
                         <div class="col-sm-9 paddingbottomclass">
