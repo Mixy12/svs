@@ -46,9 +46,6 @@ router.get('/', function(req, res, next) {
                         res.render('err', { logget: req.cookies.logged})
                     }
                      let j = JSON.parse(data);
-                    //console.log(p1);
-                    //console.log(obj);
-                    //console.log(p1);
                     console.log(j.table);
                     //------------------------------------------------
                     if(req.query.copy){
@@ -56,7 +53,8 @@ router.get('/', function(req, res, next) {
                             UserIP: req.connection.remoteAddress.toString(),
                             Hash: req.cookies.hash,
                             UserId: req.cookies.userId,
-                            num: req.query.copy.toString()
+                            num: req.query.copy.toString(),
+
                         };
                         console.log('params');
                         console.log(params);
@@ -86,7 +84,8 @@ router.get('/', function(req, res, next) {
                                 res.render('requestdelivery',{
                                     logget: req.cookies.logged,
                                     table:j.table,
-                                    content:content
+                                    content:content,
+                                    pay:req.cookies.pay
                             });
                         });
 
@@ -108,7 +107,8 @@ router.get('/', function(req, res, next) {
         let content = '';
         res.render('requestdelivery',{
             logget: req.cookies.logged,
-            content:content
+            content:content,
+            pay:req.cookies.pay
         });
     }
         });
@@ -143,7 +143,7 @@ router.get('/:num', function(req, res, next) {
             var j = JSON.parse(data);
             console.log(j);
             //var k = JSON.parse(j.val);
-            res.render('requestdelivery', { num: j,logget: req.cookies.logged});
+            res.render('requestdelivery', { num: j,logget: req.cookies.logged,pay:req.cookies.pay});
         });
     });
 
